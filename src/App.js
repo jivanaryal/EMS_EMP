@@ -5,6 +5,7 @@ import Dashboard from "./Components/Pages/Dashboard/Dashboard";
 import LoginPage from "./Components/Pages/LoginPage/LoginPage";
 import LeaveRequest from "./Components/Pages/LeaveRequest/LeaveRequest.jsx";
 import "react-toastify/dist/ReactToastify.css";
+import Leave from "./Components/Pages/LeaveRequest/Leave";
 
 const App = () => {
   return (
@@ -13,7 +14,7 @@ const App = () => {
         <Routes>
           <Route path="" element={<Layout />}>
             <Route index element={<Dashboard />} />
-            <Route path="leave" element={<LeaveRequest />} />
+            <Route path="leave" element={<Leave />} />
           </Route>
           <Route path="/login" element={<LoginPage />} />
         </Routes>
