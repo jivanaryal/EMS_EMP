@@ -40,7 +40,7 @@ const Dashboard = () => {
         <div className="grid grid-cols-2 gap-24">
           <div>
             {singleEmployee.map((val, i) => (
-              <div className="w-11/12 bg-white capitalize rounded-lg shadow-md p-6">
+              <div className="w-11/12 bg-white capitalize rounded-lg  p-6">
                 <h1 className="text-2xl font-bold mb-4">Employee Details</h1>
                 <div className="mb-4">
                   <span className="text-gray-500 font-semibold">Image:</span>{" "}
