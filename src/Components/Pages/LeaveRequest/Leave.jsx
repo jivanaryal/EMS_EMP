@@ -9,11 +9,11 @@ const Leave = () => {
   const data = [
     {
       id: "add",
-      name: "Add Emp",
+      name: "New Leave",
     },
     {
       id: "view",
-      name: "Manage Emp",
+      name: "Leave Status",
     },
   ];
 
