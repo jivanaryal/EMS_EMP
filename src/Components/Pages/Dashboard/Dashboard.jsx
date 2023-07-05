@@ -4,7 +4,7 @@ import UserAuthContextApi, {
   UserAuthContext,
 } from "../../../Hoc/ContextApi/UserAuthContextApi";
 import { get } from "../../../services/api";
-import LeaveChart from "./LeaveChart";
+import PieChart from "./PieChart";
 
 const Dashboard = () => {
   const [singleEmployee, setSingleEmployee] = useState([]);
@@ -64,14 +64,11 @@ const Dashboard = () => {
                   {val.gender}
                 </div>
               </div>
-            );
-          })}
-        </div>
-        <div>
-          <button onClick={removeToken}>logout</button>
-        </div>
-        <div>
-          <LeaveChart />
+            ))}
+          </div>
+          <div className="w-96">
+            <PieChart employee={employee} />
+          </div>
         </div>
       </UserAuthContext.Provider>
     </UserAuthContextApi>
