@@ -26,7 +26,7 @@ const ViewLeaveRequest = () => {
     remove(`/leave/request/${storedUserId}`).then((res) => {
       if (res.status === 200) {
         setToggle(!toggle);
-        toast.error("The department is removed", {
+        toast.error("The  is removed", {
           className: "custom-toast",
         });
       }
@@ -39,8 +39,8 @@ const ViewLeaveRequest = () => {
 
   const newData = useMemo(() => newCallBack(), [toggle]);
   return (
-    <div className="my-10 mx-10">
-      <h1 className="font-bold text-xl">Manage Department</h1>
+    <div className="my-10 mx-10 shadow-sm shadow-gray-400 p-4">
+      <h1 className="font-bold text-xl">View Leave</h1>
       <table className="w-full rounded-lg shadow-sm">
         <thead className="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
           <tr>
@@ -48,15 +48,17 @@ const ViewLeaveRequest = () => {
               S.No
             </th>
             <th className="py-3 px-6 border-r border-b border-gray-200">
-              Emloyee Name
+              Employee Name
             </th>
             <th className="py-3 px-6 border-r border-b border-gray-200">
-              start date
+              Start Date
             </th>
             <th className="py-3 px-6 border-r border-b border-gray-200">
-              End date
+              End Date
             </th>
-
+            <th className="py-3 px-6 border-r border-b border-gray-200">
+              Status
+            </th>
             <th className="py-3 px-6 border-r border-b border-gray-200">
               Delete
             </th>
@@ -74,6 +76,7 @@ const ViewLeaveRequest = () => {
                 {val.middle_name}
                 {val.last_name}
               </td>
+              <td className="py-3 px-4 border-l border-r">{val.start_date}</td>
               <td className="py-3 px-4 border-l border-r">{val.end_date}</td>
               <td className="py-3 px-4 border-l border-r">{val.status}</td>
               <td className="py-3 px-4 border-l border-r text-center">

@@ -21,15 +21,15 @@ import { post } from "../../../services/api";
 const FormField = [
   {
     name: "start_date",
-    type: "text",
+    type: "Date",
   },
   {
     name: "end_date",
-    type: "text",
+    type: "Date",
   },
   {
-    name: "message",
-    type: "text",
+    name: "Leave Details",
+    type: "textarea",
   },
 ];
 
@@ -55,10 +55,13 @@ const LeaveRequest = () => {
         }}
       >
         {({ handleSubmit }) => (
-          <Form onSubmit={handleSubmit} className="mt-8">
+          <Form
+            onSubmit={handleSubmit}
+            className="mt-8 shadow-sm shadow-gray-400 p-8"
+          >
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               {FormField.map((field, index) => (
-                <div key={index}>
+                <div key={index} className="text-gray-600">
                   <label htmlFor={field.name} className="text-sm font-semibold">
                     {field.name}
                   </label>
@@ -81,7 +84,7 @@ const LeaveRequest = () => {
                 type="submit"
                 className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition-colors duration-300"
               >
-                Submit
+                Add Leave
               </button>
             </div>
           </Form>

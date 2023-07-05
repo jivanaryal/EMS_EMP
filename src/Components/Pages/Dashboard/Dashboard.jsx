@@ -4,7 +4,6 @@ import UserAuthContextApi, {
   UserAuthContext,
 } from "../../../Hoc/ContextApi/UserAuthContextApi";
 import { get } from "../../../services/api";
-import LeaveChart from "./LeaveChart";
 import PieChart from "./PieChart";
 
 const Dashboard = () => {

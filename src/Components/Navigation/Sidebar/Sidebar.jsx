@@ -15,24 +15,9 @@ const Navdata = [
   },
 
   {
-    title: "department",
-    path: "/department",
-    logo: <HiBuildingOffice2 />,
-  },
-  {
-    title: "employee",
-    path: "/employee",
-    logo: <HiUserGroup />,
-  },
-  {
     title: "attendance",
     path: "/attendance",
     logo: <GiArchiveRegister />,
-  },
-  {
-    title: "createEmployee",
-    path: "/create",
-    logo: <AiOutlineUsergroupAdd />,
   },
   {
     title: "leave",
