@@ -24,8 +24,8 @@ const Navbar = () => {
         </div>
         {/* profile */}
         <div className="flex justify-between items-center gap-3 p-4">
-          <div>Manoj Belbase</div>
-          <div className="bg-red-400 rounded-full h-10 w-10">
+          <div className="hidden">Manoj Belbase</div>
+          <div className="bg-red-400 rounded-full h-10 w-10 hidden">
             <img
               src={
                 "https://th.bing.com/th/id/OIP.RdxS9u-w00MM-81ESAivhQHaHa?w=203&h=203&c=7&r=0&o=5&dpr=1.5&pid=1.7"
@@ -34,7 +34,7 @@ const Navbar = () => {
               className="rounded-3xl"
             />
           </div>
-          <div className="relative ">
+          <div className="relative hidden">
             <MdKeyboardArrowDown
               onBlur={() => {
                 setShow(false);
