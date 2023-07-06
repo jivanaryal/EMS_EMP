@@ -9,7 +9,7 @@ const Leave = () => {
   const data = [
     {
       id: "add",
-      name: "New Leave",
+      name: "Take Leave",
     },
     {
       id: "view",

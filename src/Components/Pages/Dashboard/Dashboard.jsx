@@ -39,7 +39,7 @@ const Dashboard = () => {
         <div className="grid grid-cols-2 gap-24">
           <div>
             {singleEmployee.map((val, i) => (
-              <div className="w-11/12 bg-white capitalize rounded-lg shadow-md p-6">
+              <div className="w-11/12 bg-white capitalize rounded-lg  p-6">
                 <h1 className="text-2xl font-bold mb-4">Employee Details</h1>
                 <div className="mb-4">
                   <span className="text-gray-500 font-semibold">Image:</span>{" "}
@@ -68,6 +68,30 @@ const Dashboard = () => {
           </div>
           <div className="w-96">
             <PieChart employee={employee} />
+          </div>
+          <div className="employee_data pl-6 shadow-sm  shadow-mainColor w-full  rounded-lg  ">
+            <h1 className="text-2xl font-bold mb-8 pt-6 mt-4">
+              Top Salary Employees
+            </h1>
+            <div className="w-full">
+              {singleEmployee.map((emp, index) => (
+                <div key={index} className="flex items-center mb-4 w-full">
+                  <img
+                    src={`http://localhost:5000/${emp.image}`}
+                    alt="Employee"
+                    className="w-12 h-12 rounded-full mr-5"
+                  />
+                  <div className="grid w-full grid-cols-4 gap-4  text-sm text-[#5E5E5E] font-bold items-center">
+                    <div className="text-gray-700 capitalize ">
+                      {emp.first_name} {emp.middle_name} {emp.last_name}
+                    </div>
+                    <div>{emp.dept_name}</div>
+                    <div>{emp.job}</div>
+                    <div className="font-bold text-black">${emp.salary}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </UserAuthContext.Provider>

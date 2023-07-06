@@ -21,20 +21,21 @@ import { post } from "../../../services/api";
 const FormField = [
   {
     name: "start_date",
-    type: "Date",
+    type: "date",
   },
   {
     name: "end_date",
-    type: "Date",
+    type: "date",
   },
   {
-    name: "Leave Details",
-    type: "textarea",
+    name: "message",
+    type: "text",
   },
 ];
 
 const LeaveRequest = () => {
   const storedUserId = localStorage.getItem("emp_id");
+  console.log(storedUserId);
   const postFormData = async (value) => {
     post(`/leave/request/${storedUserId}`, value).then((res) => {
       toast.success("the request is send");
