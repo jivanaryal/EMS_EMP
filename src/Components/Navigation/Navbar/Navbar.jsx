@@ -3,6 +3,7 @@ import { GoSearch } from "react-icons/go";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { get } from "../../../services/api";
 import { useNavigate } from "react-router-dom";
+import Profile from "./Profile/Profile";
 // import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
@@ -54,7 +55,7 @@ const Navbar = () => {
               </div>
               <div className=" rounded-full ">
                 <img
-                  src={`http://localhost:5000/${val.image}`}
+                  src={`http://192.168.18.7:5000/${val.image}`}
                   alt="logo"
                   className=" w-11 h-11 rounded-full border-2"
                 />
@@ -79,8 +80,10 @@ const Navbar = () => {
                 )}
 
                 {show && (
-                  <div className="w-56 text-secondColor font-bold rounded-md shadow-lg shadow-mainColor absolute top-[3.4rem]  right-[1px] z-20 p-2 cursor-pointer border-1 border-gray-300 h-20 bg-mainColor">
-                    <div onClick={() => handleChange()}>Logut</div>
+                  <div className="w-56 text-black bg-white rounded-md shadow-sm shadow-gray-300 absolute top-[3.4rem]  right-[1px] z-20 py-4 cursor-pointer border-1 border-gray-300 h-28 px-3">
+                    <div>
+                      <Profile />
+                    </div>
                   </div>
                 )}
               </div>

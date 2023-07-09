@@ -6,6 +6,7 @@ import LoginPage from "./Components/Pages/LoginPage/LoginPage";
 import LeaveRequest from "./Components/Pages/LeaveRequest/LeaveRequest.jsx";
 import "react-toastify/dist/ReactToastify.css";
 import Leave from "./Components/Pages/LeaveRequest/Leave";
+import MyProfile from "./Components/Navigation/Navbar/Profile/MyProfile";
 
 const App = () => {
   return (
@@ -15,8 +16,10 @@ const App = () => {
           <Route path="" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="leave" element={<Leave />} />
+            <Route path="/myprofile" element={<MyProfile />} />
           </Route>
           <Route path="/login" element={<LoginPage />} />
+
         </Routes>
       </Router>
     </div>
