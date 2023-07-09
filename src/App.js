@@ -17,7 +17,7 @@ const App = () => {
     <div>
       <Router>
         <Routes>
-          <Route path="" element={<Layout />}>
+          <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="leave" element={<Leave />} />
             <Route path="myprofile" element={<Profile />} />
