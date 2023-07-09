@@ -12,7 +12,7 @@ import { Pie } from "react-chartjs-2";
 
 const PieChart = ({ employee }) => {
   const datas = employee.filter((val) => val.status === "rejected");
-  const datas1 = employee.filter((val) => val.status === "accepted");
+  const datas1 = employee.filter((val) => val.status === "approved");
   const datas2 = employee.filter((val) => val.status === "pending");
 
   const reject = datas.length;

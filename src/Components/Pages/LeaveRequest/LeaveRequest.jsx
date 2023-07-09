@@ -1,23 +1,9 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast, ToastContainer } from "react-toastify";
-import * as yup from "yup";
-// import axios from "axios";
-import { post } from "../../../services/api";
-// import axios from "axios";
 
-// const schema = yup.object().shape({
-//   dept_name: yup
-//     .string()
-//     .required("The Name is required")
-//     .max(15, "Character length should not exceed 15")
-//     .matches(/^[A-Za-z]+$/, "Only characters are allowed."),
-//   dept_location: yup
-//     .string()
-//     .required("The location is required")
-//     .max(15, "Character length should not exceed 15")
-//     .matches(/^[A-Za-z]+$/, "Only characters are allowed."),
-// });
+import { post } from "../../../services/api";
+
 const FormField = [
   {
     name: "start_date",

@@ -1,9 +1,7 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
-import { HiBuildingOffice2 } from "react-icons/hi2";
-import { HiUserGroup } from "react-icons/hi";
-import { AiOutlineUsergroupAdd } from "react-icons/ai";
+
 import { GiArchiveRegister } from "react-icons/gi";
 import { FcLeave } from "react-icons/fc";
 
@@ -28,6 +26,8 @@ const Navdata = [
 
 const Sidebar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
   return (
     <div className="pl-5 h-full">
       <div className="text-4xl text-center font-extrabold pb-5 flex">EMP</div>

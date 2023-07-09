@@ -1,11 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GoSearch } from "react-icons/go";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { get } from "../../../services/api";
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const [show, setShow] = React.useState(false);
-  const [Arrow, setArrow] = useState("down");
+  const [show, setShow] = useState(false);
+  const [Arrow, setArrow] = useState(false);
+  const [employee, setEmployee] = useState([]);
+  const storedUserId = localStorage.getItem("emp_id");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    get(`/employee/${storedUserId}`)
+      .then((res) => {
+        setEmployee(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const handleChange = () => {
+    window.localStorage.clear();
+    navigate("/login");
+  };
+
   // const navigate = useNavigate();
   return (
     <div className="h-16 border-2 z-40  shadow-lg fixed top-0 w-full bg-secondColor navbar">
@@ -23,46 +45,48 @@ const Navbar = () => {
           <GoSearch className="absolute left-3 text-black" />
         </div>
         {/* profile */}
-        <div className="flex justify-between items-center gap-3 p-4">
-          <div className="hidden">Manoj Belbase</div>
-          <div className="bg-red-400 rounded-full h-10 w-10 hidden">
-            <img
-              src={
-                "https://th.bing.com/th/id/OIP.RdxS9u-w00MM-81ESAivhQHaHa?w=203&h=203&c=7&r=0&o=5&dpr=1.5&pid=1.7"
-              }
-              alt="logo"
-              className="rounded-3xl"
-            />
-          </div>
-          <div className="relative hidden">
-            <MdKeyboardArrowDown
-              onBlur={() => {
-                setShow(false);
-              }}
-              onClick={() => {
-                setArrow("up");
-                setShow(!show);
-              }}
-              className={`text-4xl relative cursor-pointer ${
-                show ? "hidden" : "block"
-              } `}
-            />
-            <MdKeyboardArrowUp
-              className={`text-4xl relative  text-white  cursor-pointer   ${
-                Arrow === "down" ? "hidden  " : "block "
-              }`}
-              onClick={() => {
-                setArrow("down");
-                setShow(!show);
-              }}
-            />
-            {show && (
-              <div className="w-40 text-black absolute top-12 rounded-lg right-1 z-20 p-2 cursor-pointer border-1 border-gray-300 h-20 bg-secondColor">
-                <p>LogOut</p>
+
+        {employee.map((val, i) => {
+          return (
+            <div className="flex relative  items-center gap-3">
+              <div className="">
+                {val.first_name} {val.middle_name} {val.last_name}
               </div>
-            )}
-          </div>
-        </div>
+              <div className=" rounded-full ">
+                <img
+                  src={`http://localhost:5000/${val.image}`}
+                  alt="logo"
+                  className=" w-11 h-11 rounded-full border-2"
+                />
+              </div>
+              <div className=" ">
+                {Arrow ? (
+                  <MdKeyboardArrowDown
+                    onClick={() => {
+                      setArrow(!Arrow);
+                      setShow(!show);
+                    }}
+                    className="text-4xl  cursor-pointer "
+                  />
+                ) : (
+                  <MdKeyboardArrowUp
+                    onClick={() => {
+                      setArrow(!Arrow);
+                      setShow(!show);
+                    }}
+                    className="text-4xl  cursor-pointer "
+                  />
+                )}
+
+                {show && (
+                  <div className="w-56 text-secondColor font-bold rounded-md shadow-lg shadow-mainColor absolute top-[3.4rem]  right-[1px] z-20 p-2 cursor-pointer border-1 border-gray-300 h-20 bg-mainColor">
+                    <div onClick={() => handleChange()}>Logut</div>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
