@@ -17,6 +17,7 @@ const data = [
 
 const Profile = () => {
   const location = useLocation();
+
   return (
     <div>
       {data.map((val, i) => {
