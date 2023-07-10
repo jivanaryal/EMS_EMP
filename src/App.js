@@ -5,6 +5,7 @@ import Dashboard from "./Components/Pages/Dashboard/Dashboard";
 import LoginPage from "./Components/Pages/LoginPage/LoginPage";
 import "react-toastify/dist/ReactToastify.css";
 import Leave from "./Components/Pages/LeaveRequest/Leave";
+import Profile from "./Components/Navigation/Navbar/Profile/Profile";
 import Task from "./Components/Pages/Task/Task";
 import NewTask from "./Components/Pages/Task/NewTask";
 import InProgressTask from "./Components/Pages/Task/InProgressTask";
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="leave" element={<Leave />} />
+            <Route path="myprofile" element={<Profile />} />
             <Route path="task" element={<Task />} />
             <Route path="task/new" element={<NewTask />} />
             <Route path="task/inprogress" element={<InProgressTask />} />
