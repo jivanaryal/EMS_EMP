@@ -4,7 +4,7 @@ import { get } from "../../../services/api";
 const NewTask = () => {
   const [task, setTask] = useState([]);
   const id = localStorage.getItem("emp_id");
-
+  console.log(task);
   useEffect(() => {
     get(`/task/${id}`).then((res) => {
       if (res.status === 200) {
@@ -42,21 +42,27 @@ const NewTask = () => {
         </tr>
       </thead>
       <tbody className="text-gray-600 text-sm font-light">
-        <tr className="border-b border-gray-200 hover:bg-gray-100">
-          <td className="py-3 px-4 border-l text-center">1</td>
-          <td className="py-3 px-4 border-l text-center">
-            Prepare bill for laptops
-          </td>
-          <td className="py-3 px-4 border-l text-center">Manoj Belbase</td>
-          <td className="py-3 px-4 border-l text-center">12/12/2022</td>
-          <td className="py-3 px-4 border-l text-center">14/12/2023</td>
-          <td className="py-3 px-4 border-l text-center">Not upadated yet</td>
-          <td className="py-3 px-4 border-l text-center">
-            <button className="py-1 px-2 bg-mainColor font-medium text-white rounded-sm">
-              View
-            </button>
-          </td>
-        </tr>
+        {task.map((val, i) => (
+          <tr className="border-b border-gray-200 hover:bg-gray-100">
+            <td className="py-3 px-4 border-l text-center">{i + 1}</td>
+            <td className="py-3 px-4 border-l text-center">{val.task_title}</td>
+            <td className="py-3 px-4 border-l text-center">{val.emp_name}</td>
+            <td className="py-3 px-4 border-l text-center">
+              {val.task_assign_date}
+            </td>
+            <td className="py-3 px-4 border-l text-center">
+              {val.task_end_date}
+            </td>
+            <td className="py-3 px-4 border-l text-center">
+              {val.task_priority}
+            </td>
+            <td className="py-3 px-4 border-l text-center">
+              <button className="py-1 px-2 bg-mainColor font-medium text-white rounded-sm">
+                View
+              </button>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </div>
   );
