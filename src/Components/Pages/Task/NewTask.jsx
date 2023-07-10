@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { get } from "../../../services/api";
 
 const NewTask = () => {
+  const [task, setTask] = useState([]);
+  const id = localStorage.getItem("emp_id");
+
+  useEffect(() => {
+    get(`/task/${id}`).then((res) => {
+      if (res.status === 200) {
+        setTask(res.data);
+      }
+    });
+  }, []);
   return (
     <div className="my-10 mx-10 shadow-sm shadow-gray-400 p-4">
       <h1 className="font-bold text-xl mb-4">View New Task</h1>{" "}
