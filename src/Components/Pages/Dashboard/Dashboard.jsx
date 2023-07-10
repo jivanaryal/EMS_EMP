@@ -47,7 +47,7 @@ const Dashboard = () => {
                 <div className="mb-4">
                   <span className="text-gray-500 font-semibold"></span>{" "}
                   <img
-                    src={`http://192.168.18.7:5000/${val.image}`}
+                    src={`http://localhost:5000/${val.image}`}
                     alt=""
                     className="w-32 h-32 rounded-full object-cover"
                   />

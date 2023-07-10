@@ -11,6 +11,7 @@ const Navbar = () => {
   const [Arrow, setArrow] = useState(false);
   const [employee, setEmployee] = useState([]);
   const storedUserId = localStorage.getItem("emp_id");
+  console.log(storedUserId);
 
   const navigate = useNavigate();
 
@@ -55,7 +56,7 @@ const Navbar = () => {
               </div>
               <div className=" rounded-full ">
                 <img
-                  src={`http://192.168.18.7:5000/${val.image}`}
+                  src={`http://localhost:5000/${val.image}`}
                   alt="logo"
                   className=" w-11 h-11 rounded-full border-2"
                 />
