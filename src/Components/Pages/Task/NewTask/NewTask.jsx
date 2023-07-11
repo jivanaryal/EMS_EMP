@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { get } from "../../../services/api";
+import { get } from "../../../../services/api";
+import { Link, useLocation } from "react-router-dom";
 
 const NewTask = () => {
+  const location = useLocation();
   const [task, setTask] = useState([]);
   const id = localStorage.getItem("emp_id");
   console.log(task);
@@ -12,6 +14,12 @@ const NewTask = () => {
       }
     });
   }, []);
+  const data = [
+    {
+      name: "View",
+      path: "/view",
+    },
+  ];
   return (
     <div className="my-10 mx-10 shadow-sm shadow-gray-400 p-4">
       <h1 className="font-bold text-xl mb-4">View New Task</h1>{" "}
@@ -57,10 +65,19 @@ const NewTask = () => {
               {val.task_priority}
             </td>
             <td className="py-3 px-4 border-l text-center">
-              <button className="py-1 px-2 bg-mainColor font-medium text-white rounded-sm">
-                View
-              </button>
+              {data.map((curElem, i) => (
+                <Link to={curElem.path} key={i}>
+                  <div
+                    className={`py-1 px-2 bg-mainColor font-medium text-white rounded-sm ${
+                      location.pathname === val.path && "bg-blue-600"
+                    }`}
+                  >
+                    {curElem.name}
+                  </div>
+                </Link>
+              ))}
             </td>
+            ;
           </tr>
         ))}
       </tbody>
