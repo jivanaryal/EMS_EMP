@@ -10,6 +10,7 @@ import Task from "./Components/Pages/Task/Task";
 import NewTask from "./Components/Pages/Task/NewTask/NewTask";
 import InProgressTask from "./Components/Pages/Task/InProgressTask";
 import CompletedTask from "./Components/Pages/Task/CompletedTask";
+import Check1 from './dummy/Check1'
 import TaskDetails from "./Components/Pages/Task/NewTask/TaskDetails";
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/view" element={<TaskDetails />} />
             <Route path="task/inprogress" element={<InProgressTask />} />
             <Route path="task/completed" element={<CompletedTask />} />
+            <Route path="jivan" element={<Check1 />} />
           </Route>
           <Route path="/login" element={<LoginPage />} />
         </Routes>

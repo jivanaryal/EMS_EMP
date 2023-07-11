@@ -66,10 +66,10 @@ const NewTask = () => {
             </td>
             <td className="py-3 px-4 border-l text-center">
               {data.map((curElem, i) => (
-                <Link to={curElem.path} key={i}>
+                <Link to={curElem.path} key={i} state={val}>
                   <div
                     className={`py-1 px-2 bg-mainColor font-medium text-white rounded-sm ${
-                      location.pathname === val.path && "bg-blue-600"
+                      location.pathname === curElem.path && "bg-blue-600"
                     }`}
                   >
                     {curElem.name}
