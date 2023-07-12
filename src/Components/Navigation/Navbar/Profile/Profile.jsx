@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 const data = [
   {
     name: "My Profile",
@@ -9,30 +9,35 @@ const data = [
     name: "Setting",
     path: "/setting",
   },
-  {
-    name: "Logout",
-    path: "/logout",
-  },
 ];
 
 const Profile = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const resetData = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
 
   return (
     <div>
-      {data.map((val, i) => {
-        return (
-          <Link to={val.path} key={i}>
-            <div
-              className={`text-black ${
-                location.pathname == val.path
-              } && hover:bg-black hover:text-white hover:border-3 hover:rounded-sm hover:p-1 my-1`}
-            >
-              {val.name}
-            </div>
-          </Link>
-        );
-      })}
+      <div>
+        {data.map((val, i) => {
+          return (
+            <Link to={val.path} key={i}>
+              <div
+                className={`text-black ${
+                  location.pathname == val.path
+                } && hover:bg-black hover:text-white hover:border-3 hover:rounded-sm hover:p-1 my-1`}
+              >
+                {val.name}
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+      <div onClick={() => resetData()}>logout</div>
     </div>
   );
 };
