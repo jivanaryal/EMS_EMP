@@ -12,31 +12,36 @@ const TaskDetails = () => {
       <div className="container border-gray-300 border-2">
         <div className="nav font-bold border-gray-300 p-2">Task Details</div>
         <div className="body border-gray-300 border-t-2">
-          <div className="frow grid grid-cols-4 border-b-2 border-gray-300 text-start ">
-            <p className="font-semibold border-gray-300 border-r-2 px-2">
-              Task TItle
+          <div className=" border-b-2 border-gray-300  grid grid-cols-4 px-2">
+            <p className="font-semibold border-gray-300 border-r-2">
+              Task Title
             </p>
-            <p>{location.state.task_title}</p>
-            <p className="font-semibold">Task Priority</p>
-            <p>{location.state.status}</p>
+            <p className="px-2">{location.state.task_title}</p>
           </div>
+          <div className="desc px-2 grid grid-cols-4 border-b-2 border-gray-300">
+            <p className="font-semibold border-gray-300 border-r-2">
+              Task Priority
+            </p>
+            <p className="px-2">{location.state.task_priority}</p>
+          </div>
+
           <div className="desc px-2 grid grid-cols-4 border-b-2 border-gray-300">
             <p className="font-semibold border-gray-300 border-r-2">
               Task Description
             </p>
-            <p>{location.state.task_description}</p>
+            <p className="px-2">{location.state.task_description}</p>
           </div>
           <div className="assign px-2 grid grid-cols-4 border-b-2 border-gray-300">
             <p className="font-semibold border-gray-300 border-r-2">
               Task Assign Date
             </p>
-            <p>{location.state.task_assign_date}</p>
+            <p className="px-2">{location.state.task_assign_date}</p>
           </div>
           <div className="finish px-2 grid grid-cols-4 border-b-2 border-gray-300">
             <p className="font-semibold border-gray-300 border-r-2">
               Task Finish Date
             </p>
-            <p>{location.state.task_end_date}</p>
+            <p className="px-2">{location.state.task_end_date}</p>
           </div>
           {/* remarks */}
           <div className="assign px-2 grid grid-cols-4">
