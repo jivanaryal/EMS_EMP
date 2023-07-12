@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import DangerModal from "../../../UI/DangerModal";
 
 const TaskDetails = () => {
   const location = useLocation();
+  const [showDelete, setShowDelete] = useState(false);
+
+  const success = () => {
+    console.log("hello");
+  };
+
+  const failure = () => {
+    setShowDelete(false);
+  };
+
   console.log(location.state);
   // console.log(location.state[0]);
 
   return (
     <div className="my-10 mx-10 shadow-sm shadow-gray-400 p-4">
+      {showDelete && (
+        <DangerModal
+          onClick={success}
+          falseCondition={failure}
+          name="employee"
+        />
+      )}
       <h1 className="font-bold text-xl mb-4">View Task Details</h1>
       <div className="container border-gray-300 border-2">
         <div className="nav font-bold border-gray-300 p-2">Task Details</div>
@@ -53,7 +71,12 @@ const TaskDetails = () => {
         </div>
       </div>
       <div className="btn text-center mt-4 ">
-        <button className="bg-mainColor text-white rounded-sm p-2">
+        <button
+          className="bg-mainColor text-white rounded-sm p-2"
+          onClick={() => {
+            setShowDelete(true);
+          }}
+        >
           Take Action
         </button>
       </div>
