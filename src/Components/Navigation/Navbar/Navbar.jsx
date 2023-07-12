@@ -56,7 +56,7 @@ const Navbar = () => {
               </div>
               <div className=" rounded-full ">
                 <img
-                  src={`http://localhost:5000/${val.image}`}
+                  src={`http://192.168.18.7:5000/${val.image}`}
                   alt="logo"
                   className=" w-11 h-11 rounded-full border-2"
                 />

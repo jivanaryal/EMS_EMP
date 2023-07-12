@@ -57,7 +57,6 @@ const SideBar = () => {
       ],
     },
   ];
-
   return (
     <div className="pl-5  h-screen bg-gray-900 text-white">
       <div className=" text-[#FDF7FF] flex justify-center font-extrabold py-8">
