@@ -73,8 +73,8 @@ const NewTask = () => {
               {data.map((curElem, i) => (
                 <Link to={curElem.path} key={i} state={val}>
                   <div
-                    className={`py-1 px-2 bg-mainColor font-medium text-white rounded-sm ${
-                      location.pathname === curElem.path && "bg-blue-600"
+                    className={`py-1 px-2 bg-mainColor font-medium text-white rounded-sm hover:bg-blue-700 ${
+                      location.pathname === curElem.path
                     }`}
                   >
                     {curElem.name}
@@ -82,7 +82,6 @@ const NewTask = () => {
                 </Link>
               ))}
             </td>
-            ;
           </tr>
         ))}
       </tbody>

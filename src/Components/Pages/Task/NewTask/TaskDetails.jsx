@@ -27,7 +27,9 @@ const TaskDetails = () => {
       )}
       <h1 className="font-bold text-xl mb-4">View Task Details</h1>
       <div className="container border-gray-300 border-2">
-        <div className="nav font-bold border-gray-300 p-2">Task Details</div>
+        <div className="nav font-extrabold text-xl border-gray-300 p-2">
+          Task Details
+        </div>
         <div className="body border-gray-300 border-t-2">
           <div className=" border-b-2 border-gray-300  grid grid-cols-4 px-2">
             <p className="font-semibold border-gray-300 border-r-2">
