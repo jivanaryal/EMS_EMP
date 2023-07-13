@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast, ToastContainer } from "react-toastify";
+import TakeAction from "./TakeAction";
 
 const Index = ({ name, onClick, falseCondition }) => {
   const success = () => {
@@ -13,28 +14,13 @@ const Index = ({ name, onClick, falseCondition }) => {
     falseCondition();
   };
 
-  const FormField = [
-    {
-      name: "Remarks",
-      type: "text",
-    },
-    {
-      name: "work completion (%)",
-      type: "text",
-    },
-    {
-      name: "status",
-      type: "text",
-    },
-  ];
-
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div
         className="fixed inset-0 bg-gray-900 opacity-50"
         onClick={fail}
       ></div>
-      <div className="relative z-10 bg-white rounded-lg shadow-md dark:bg-gray-700 ">
+      <div className="relative z-10 bg-white rounded-lg shadow-md dark:bg-gray-200 ">
         <button
           type="button"
           className="absolute top-3 right-2.5 text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -57,35 +43,62 @@ const Index = ({ name, onClick, falseCondition }) => {
                 <div className="nav font-extrabold text-xl border-gray-300 p-2 text-black ">
                   Task Action
                 </div>
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 ">
-                  {FormField.map((field, index) => (
-                    <div key={index} className="">
-                      <label
-                        htmlFor={field.name}
-                        className="text-sm font-semibold text-white"
-                      >
-                        {field.name}
-                      </label>
-                      <Field
-                        type={field.type}
-                        name={field.name}
-                        className="border border-gray-400 rounded-md py-2 px-3 w-full flex"
-                        placeholder={`Enter ${field.name}`}
-                      />
-                      <ErrorMessage
-                        name={field.name}
-                        component="div"
-                        className="text-red-500 text-sm mt-1"
+                <div className="shadow-sm shadow-gray-400 w-96 border-2 border-red-400">
+                  <div className="grid grid-cols-2 border-b-2 border-black">
+                    <label
+                      htmlFor="remarks"
+                      className="text-lg font-semibold text-black border-r-2 border-black pl-2"
+                    >
+                      Remarks
+                    </label>
+                    <div className="textarea m-2">
+                      <textarea
+                        className="w-full h-44 px-2 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring focus:border-blue-300"
+                        style={{ paddingTop: "0.5rem" }}
+                        placeholder="Write your description or message here..."
                       />
                     </div>
-                  ))}
+                  </div>
+                  {/* work percentage */}
+                  <div className="grid grid-cols-2 items-center border-b-2 border-black">
+                    <label
+                      htmlFor="work"
+                      className="border-r-2 border-black pl-2"
+                    >
+                      Work Completion
+                    </label>
+                    <div className="m-2">
+                      <Field
+                        type="text"
+                        placeholder="dfdfd"
+                        className="border border-gray-400 p-2 w-full rounded-lg"
+                      />
+                    </div>
+                  </div>
+                  {/* status */}
+                  <div className="grid grid-cols-2 items-center">
+                    <label
+                      htmlFor="work"
+                      className="border-r-2  border-black pl-2"
+                    >
+                      Status
+                    </label>
+                    <div className="m-2">
+                      <Field
+                        type="text"
+                        placeholder="dfdfd"
+                        className="border border-gray-400 p-2 w-full rounded-lg"
+                      />
+                    </div>
+                  </div>
                 </div>
+                {/* <TakeAction /> */}
                 <div className="flex justify-center mt-9">
                   <button
                     type="submit"
                     className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition-colors duration-300 mb-3"
                   >
-                    Submit
+                    Update
                   </button>
                 </div>
               </Form>
