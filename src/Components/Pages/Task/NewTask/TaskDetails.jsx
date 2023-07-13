@@ -15,7 +15,6 @@ const TaskDetails = () => {
   };
 
   console.log(location.state);
-  // console.log(location.state[0]);
 
   return (
     <div className="my-10 mx-10 shadow-sm shadow-gray-400 p-4">

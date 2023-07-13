@@ -8,12 +8,17 @@ const NewTask = () => {
   const id = localStorage.getItem("emp_id");
   console.log(task);
   useEffect(() => {
-    get(`/task/${id}`).then((res) => {
-      if (res.status === 200) {
-        setTask(res.data);
-      }
-    });
+    get(`/task/${id}`)
+      .then((res) => {
+        if (res.status === 200) {
+          setTask(res.data);
+        }
+      })
+      .catch((error) => {
+        console.error(error); // Display the error in the console
+      });
   }, []);
+
   const data = [
     {
       name: "View",

@@ -12,10 +12,13 @@ const ViewLeaveRequest = () => {
   const [toggle, setToggle] = useState([]);
 
   const fetchData = async () => {
-    get(`/leave/approve/${storedUserId}`).then((res) => {
+    try {
+      const res = await get(`/leave/approve/${storedUserId}`);
       console.log(res.data);
       setInfo(res.data);
-    });
+    } catch (error) {
+      console.error(error); // Display the error in the console
+    }
   };
 
   // useEffect(() => {
@@ -23,14 +26,18 @@ const ViewLeaveRequest = () => {
   // }, []);
 
   const deleteItem = (id) => {
-    remove(`/leave/request/${storedUserId}`).then((res) => {
-      if (res.status === 200) {
-        setToggle(!toggle);
-        toast.error("The  is removed", {
-          className: "custom-toast",
-        });
-      }
-    });
+    remove(`/leave/request/${storedUserId}`)
+      .then((res) => {
+        if (res.status === 200) {
+          setToggle(!toggle);
+          toast.error("The item is removed", {
+            className: "custom-toast",
+          });
+        }
+      })
+      .catch((error) => {
+        console.error(error); // Display the error in the console
+      });
   };
 
   const newCallBack = useCallback(() => {

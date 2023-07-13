@@ -71,12 +71,12 @@ const SideBar = () => {
               <div
                 className={`flex  pl-4 py-3 rounded-lg items-center  text-base text-purple-200 bg-gray-800 hover:bg-gray-700 ${
                   location.pathname === val.path &&
-                  "text-gray-700 bg-mainColor shadow-md font-bold"
+                  "text-gray-700 bg-mainColor shadow-md font-bold capitalize"
                 }`}
                 onClick={() => toggleDropdown(val.title)}
               >
                 <div className="text-xl">{val.icon}</div>
-                <div className="ml-2">{val.title}</div>
+                <div className="ml-2 capitalize">{val.title}</div>
               </div>
             </Link>
             {val.options && expandedOption === val.title && (

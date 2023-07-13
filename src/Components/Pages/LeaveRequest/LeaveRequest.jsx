@@ -23,10 +23,15 @@ const LeaveRequest = () => {
   const storedUserId = localStorage.getItem("emp_id");
   console.log(storedUserId);
   const postFormData = async (value) => {
-    post(`/leave/request/${storedUserId}`, value).then((res) => {
-      toast.success("the request is send");
-    });
+    post(`/leave/request/${storedUserId}`, value)
+      .then((res) => {
+        toast.success("The request has been sent");
+      })
+      .catch((error) => {
+        console.error(error); // Display the error in the console
+      });
   };
+
   return (
     <div className="w-full px-6 sm:px-10">
       <Formik

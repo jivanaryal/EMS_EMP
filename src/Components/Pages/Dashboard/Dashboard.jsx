@@ -12,11 +12,15 @@ const Dashboard = () => {
   const storedUserId = localStorage.getItem("emp_id");
 
   useEffect(() => {
-    get(`/leave/approve/${storedUserId}`).then((res) => {
-      if (res.status === 200) {
-        setEmployee(res.data);
-      }
-    });
+    get(`/leave/approve/${storedUserId}`)
+      .then((res) => {
+        if (res.status === 200) {
+          setEmployee(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     get(`/employee/${storedUserId}`)
       .then((res) => {
         setSingleEmployee(res.data);
