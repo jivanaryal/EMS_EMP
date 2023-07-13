@@ -54,7 +54,7 @@ const Index = ({ name, onClick, falseCondition }) => {
           >
             {({ handleSubmit }) => (
               <Form onSubmit={handleSubmit} className="mt-8 ">
-                <div className="nav font-extrabold text-xl border-gray-300 p-2 text-white">
+                <div className="nav font-extrabold text-xl border-gray-300 p-2 text-black ">
                   Task Details
                 </div>
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 ">

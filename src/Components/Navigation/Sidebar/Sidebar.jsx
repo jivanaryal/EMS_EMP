@@ -37,7 +37,7 @@ const SideBar = () => {
     {
       icon: <BiTask />,
       title: "task",
-      path: "/task",
+      path: null,
       options: [
         {
           icon: null,
