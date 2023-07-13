@@ -35,13 +35,14 @@ const Index = ({ name, onClick, falseCondition }) => {
         className="fixed inset-0 bg-gray-900 opacity-50"
         onClick={fail}
       ></div>
-      <div className="relative z-10 bg-white rounded-lg shadow-md dark:bg-gray-200 ">
+      <div className="relative z-10 bg-white rounded-lg shadow-md dark:bg-white ">
         <button
           type="button"
           className="absolute top-3 right-2.5 text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
           onClick={fail}
         ></button>
-        <div className="w-full px-6 sm:px-10">
+        <div className="w-full px-4">
+          <h1 className="font-bold text-xl mt-4 pl-4">Take Action</h1>
           <Formik
             initialValues={{
               emp_final_remark: "",
@@ -53,8 +54,11 @@ const Index = ({ name, onClick, falseCondition }) => {
             }}
           >
             {({ handleSubmit }) => (
-              <Form onSubmit={handleSubmit} className="mt-8">
-                {/* ... */}
+              <Form
+                onSubmit={handleSubmit}
+                className="m-6 border-2 border-gray-300 shadow-sm shadow-gray-300"
+              >
+                {/* ... Remarks*/}
                 <div className="grid grid-cols-2 border-b-2 border-gray-300 hover:bg-green-400">
                   <label
                     htmlFor="remarks"
@@ -68,11 +72,11 @@ const Index = ({ name, onClick, falseCondition }) => {
                       name="emp_final_remark"
                       className="w-full h-44 px-2 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring focus:border-blue-300"
                       style={{ paddingTop: "0.5rem" }}
-                      placeholder="Write your description or message here..."
+                      placeholder="Remarks..."
                     />
                   </div>
                 </div>
-                {/* ... */}
+                {/* ...work completion in percentage */}
                 <div className="grid grid-cols-2 items-center border-b-2 border-gray-300 hover:bg-green-400">
                   <div className="py-4 border-gray-300 border-r-2">
                     <label htmlFor="work" className="border-gray-300 pl-2">
@@ -83,13 +87,13 @@ const Index = ({ name, onClick, falseCondition }) => {
                     <Field
                       type="text"
                       name="task_complete"
-                      placeholder="dfdfd"
+                      placeholder="Work completion percentage"
                       className="border border-gray-400 rounded-md px-2 py-2 w-full"
                     />
                   </div>
                 </div>
-                {/* ... */}
-                <div className="grid grid-cols-2 items-center border-b-2 border-gray-300">
+                {/* ... ststuss*/}
+                <div className="grid grid-cols-2 items-center border-b-2 border-gray-300 hover:bg-green-400">
                   <div className="border-r-2 border-gray-300 py-4">
                     <label htmlFor="work" className="pl-2">
                       Status
@@ -109,7 +113,7 @@ const Index = ({ name, onClick, falseCondition }) => {
                 </div>
                 <div className="flex justify-center mt-9 gap-6">
                   <div
-                    className="px-4 py-2 bg-gray-500 text-white font-semibold rounded-md transition-colors duration-300 mb-3"
+                    className="px-4 py-2 bg-gray-500 text-white font-semibold rounded-md transition-colors duration-300 mb-3 cursor-pointer hover:bg-red-500"
                     onClick={fail}
                   >
                     Cancel
