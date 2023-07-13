@@ -1,7 +1,6 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast, ToastContainer } from "react-toastify";
-import TakeAction from "./TakeAction";
 import { update } from "../../services/api";
 import { useParams } from "react-router-dom";
 
@@ -49,87 +48,64 @@ const Index = ({ name, onClick, falseCondition }) => {
               task_complete: "",
               status: "",
             }}
-            // validationSchema={schema}
             onSubmit={(values) => {
               postFormData(values);
             }}
           >
             {({ handleSubmit }) => (
-              <Form onSubmit={handleSubmit} className="mt-8 ">
-                <div className="nav font-extrabold text-xl border-gray-300 p-2 text-black ">
-                  Task Action
+              <Form onSubmit={handleSubmit} className="mt-8">
+                {/* ... */}
+                <div className="grid grid-cols-2 border-b-2 border-gray-300 hover:bg-green-400">
+                  <label
+                    htmlFor="remarks"
+                    className="text-lg font-semibold text-black border-r-2 border-gray-300 pl-2"
+                  >
+                    Remarks
+                  </label>
+                  <div className="textarea m-2">
+                    <Field
+                      as="textarea"
+                      name="emp_final_remark"
+                      className="w-full h-44 px-2 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring focus:border-blue-300"
+                      style={{ paddingTop: "0.5rem" }}
+                      placeholder="Write your description or message here..."
+                    />
+                  </div>
                 </div>
-                <div className="shadow-sm shadow-gray-400 w-96 border-2 border-red-400">
-                  <div className="grid grid-cols-2 border-b-2 border-black">
-                    <label
-                      htmlFor="remarks"
-                      className="text-lg font-semibold text-black border-r-2 border-black pl-2"
-                    >
-                      Remarks
+                {/* ... */}
+                <div className="grid grid-cols-2 items-center border-b-2 border-gray-300 hover:bg-green-400">
+                  <div className="py-4 border-gray-300 border-r-2">
+                    <label htmlFor="work" className="border-gray-300 pl-2">
+                      Work Completion (In %)
                     </label>
-                    <div className="textarea m-2">
-                      <Field
-                        as="textarea"
-                        name="emp_final_remark"
-                        className="w-full h-44 px-2 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring focus:border-blue-300"
-                        style={{ paddingTop: "0.5rem" }}
-                        placeholder="Write your description or message here..."
-                      />
-                    </div>
                   </div>
-                  {/* work percentage */}
-                  <div className="grid grid-cols-2 items-center border-b-2 border-black">
-                    <label
-                      htmlFor="work"
-                      className="border-r-2 border-black pl-2"
-                    >
-                      Work Completion(%)
-                    </label>
-                    <div className="m-2">
-                      <Field
-                        type="text"
-                        name="task_complete"
-                        className="border border-gray-400 p-2 w-full rounded-lg"
-                      />
-                    </div>
+                  <div className="m-2">
+                    <Field
+                      type="text"
+                      name="task_complete"
+                      placeholder="dfdfd"
+                      className="border border-gray-400 rounded-md px-2 py-2 w-full"
+                    />
                   </div>
-                  {/* status */}
-                  <div className="grid grid-cols-2 items-center">
-                    <label
-                      htmlFor="work"
-                      className="border-r-2 border-black pl-2"
-                    >
+                </div>
+                {/* ... */}
+                <div className="grid grid-cols-2 items-center border-b-2 border-gray-300">
+                  <div className="border-r-2 border-gray-300 py-4">
+                    <label htmlFor="work" className="pl-2">
                       Status
                     </label>
-                    <div className="m-2">
-                      <Field
-                        as="select" // Use "as" prop to render a select element
-                        name="status" // Give the field a name
-                        className="border border-gray-400 p-2 w-full rounded-lg"
-                      >
-                        <option value="">Select Status</option>
-
-                        <option value="inprogress">In Progress</option>
-
-                        <option value="completed">Completed</option>
-                      </Field>
-                    </div>
                   </div>
-                </div>
-                {/* <TakeAction /> */}
-                <div className="flex justify-center mt-9 gap-6">
-                  <div
-                    className="px-4 py-2 bg-gray-500 text-white font-semibold rounded-md transition-colors duration-300 mb-3"
-                    onClick={fail}
-                  >
-                    Cancel
+                  <div className="m-2">
+                    <Field
+                      as="select"
+                      name="status"
+                      className="border border-gray-400 p-2 w-full rounded-lg"
+                    >
+                      <option value="">Select Status</option>
+                      <option value="inprogress">In Progress</option>
+                      <option value="completed">Completed</option>
+                    </Field>
                   </div>
-                  <button
-                    type="submit"
-                    className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition-colors duration-300 mb-3"
-                  >
-                    Update
-                  </button>
                 </div>
               </Form>
             )}
