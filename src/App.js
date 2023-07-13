@@ -25,7 +25,7 @@ const App = () => {
             <Route path="myprofile" element={<Profile />} />
             <Route path="task" element={<Task />} />
             <Route path="task/new" element={<NewTask />} />
-            <Route path="/view" element={<TaskDetails />} />
+            <Route path="/view/:id" element={<TaskDetails />} />
             <Route path="task/inprogress" element={<InProgressTask />} />
             <Route path="task/completed" element={<CompletedTask />} />
             <Route path="jivan" element={<Check1 />} />

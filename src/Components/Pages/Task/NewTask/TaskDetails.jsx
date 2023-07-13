@@ -67,7 +67,7 @@ const TaskDetails = () => {
             <p className="font-semibold border-gray-300 border-r-2">
               Employee Final Remarks
             </p>
-            <p>Not Updated yet</p>
+            <p className="capitalize">{location.state.emp_final_remark}</p>
           </div>
         </div>
       </div>

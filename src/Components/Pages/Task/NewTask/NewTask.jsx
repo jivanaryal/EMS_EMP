@@ -75,17 +75,13 @@ const NewTask = () => {
                 {val.task_priority}
               </td>
               <td className="py-3 px-4 border-l text-center">
-                {data.map((curElem, i) => (
-                  <Link to={curElem.path} key={i} state={val}>
-                    <div
-                      className={`py-1 px-2 bg-mainColor font-medium text-white rounded-sm hover:bg-blue-700 ${
-                        location.pathname === curElem.path
-                      }`}
-                    >
-                      {curElem.name}
-                    </div>
-                  </Link>
-                ))}
+                <Link to={`/view/${val.task_id}`} key={i} state={val}>
+                  <div
+                    className={`py-1 px-2 bg-mainColor font-medium text-white rounded-sm hover:bg-blue-700 `}
+                  >
+                    View
+                  </div>
+                </Link>
               </td>
             </tr>
           ))}
