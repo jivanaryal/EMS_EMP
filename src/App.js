@@ -10,6 +10,7 @@ import Task from "./Components/Pages/Task/Task";
 import NewTask from "./Components/Pages/Task/NewTask/NewTask";
 import InProgressTask from "./Components/Pages/Task/InProgressTask";
 import CompletedTask from "./Components/Pages/Task/CompletedTask";
+// import UpdateTask from "./Components/Pages/Task/NewTask/UpdateTask";
 import Check1 from "./dummy/Check1";
 import TaskDetails from "./Components/Pages/Task/NewTask/TaskDetails";
 import InputField from "./dummy/InputField";
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="task" element={<Task />} />
             <Route path="task/new" element={<NewTask />} />
             <Route path="/view/:id" element={<TaskDetails />} />
+            {/* <Route path="/UpdateTask" element={<UpdateTask />} /> */}
             <Route path="task/inprogress" element={<InProgressTask />} />
             <Route path="task/completed" element={<CompletedTask />} />
             <Route path="jivan" element={<Check1 />} />

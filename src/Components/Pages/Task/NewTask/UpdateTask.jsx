@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import DangerModal from "../../../UI/DangerModal";
 
-const TaskDetails = () => {
+const UpdateTask = () => {
   const location = useLocation();
   const [showDelete, setShowDelete] = useState(false);
 
@@ -71,6 +71,44 @@ const TaskDetails = () => {
           </div>
         </div>
       </div>
+      {/* Task HIstory */}
+      <div className=" border-gray-300 border-2 mt-4">
+        <p className="p-2 text-center font-bold text-lg"> Task History</p>
+        <table className="w-full mb-2 border-2 border-gray-200">
+          <thead className=" bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+            <tr>
+              <th className="py-3 px-6 border-r border-b border-gray-200">
+                SN.
+              </th>
+              <th className="py-3 text-start px-6 border-r border-b border-gray-200">
+                Remarks
+              </th>
+              <th className="py-3 text-start px-6 border-r border-b border-gray-200">
+                Status
+              </th>
+              <th className="py-3 text-start px-6 border-r border-b border-gray-200">
+                Task Progess
+              </th>
+              <th className="py-3 text-start px-6 border-r border-b border-gray-200">
+                Time
+              </th>
+            </tr>
+          </thead>
+          <tbody className="text-gray-600 text-sm font-light">
+            <tr className="border-b border-gray-200 hover:bg-gray-100">
+              <td className="py-3 px-4 border-l border-r">1</td>
+              <td className="py-3 px-4 border-l border-r">
+                Preparing the bills
+              </td>
+              <td className="py-3 px-4 border-l border-r text-center">
+                inProgress
+              </td>
+              <td className="py-3 px-4 border-l border-r">Task Progress</td>
+              <td className="py-3 px-4 border-l border-r">20/12/2022</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <div className="btn text-center mt-4 ">
         <button
           className="bg-mainColor text-white rounded-sm p-2"
@@ -85,4 +123,4 @@ const TaskDetails = () => {
   );
 };
 
-export default TaskDetails;
+export default UpdateTask;
