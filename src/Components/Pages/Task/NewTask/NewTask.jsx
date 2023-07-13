@@ -3,7 +3,7 @@ import { get } from "../../../../services/api";
 import { Link, useLocation } from "react-router-dom";
 
 const NewTask = () => {
-  const location = useLocation();
+  // const location = useLocation();
   const [task, setTask] = useState([]);
   const id = localStorage.getItem("emp_id");
   console.log(task);
@@ -47,7 +47,7 @@ const NewTask = () => {
               End Date
             </th>
             <th className="py-3 px-6 border-r border-b border-gray-200">
-              Status
+              Task Priority
             </th>
 
             <th className="py-3 px-6 border-r border-b border-gray-200">
