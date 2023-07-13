@@ -1,7 +1,6 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast, ToastContainer } from "react-toastify";
-import TakeAction from "./TakeAction";
 
 const Index = ({ name, onClick, falseCondition }) => {
   const success = () => {
@@ -43,11 +42,11 @@ const Index = ({ name, onClick, falseCondition }) => {
                 <div className="nav font-extrabold text-xl border-gray-300 p-2 text-black ">
                   Task Action
                 </div>
-                <div className="shadow-sm shadow-gray-400 w-96 border-2 border-red-400">
-                  <div className="grid grid-cols-2 border-b-2 border-black">
+                <div className="shadow-sm shadow-gray-400 w-96 border-2 border-gray-300 ">
+                  <div className="grid grid-cols-2 border-b-2 border-gray-300 hover:bg-green-400">
                     <label
                       htmlFor="remarks"
-                      className="text-lg font-semibold text-black border-r-2 border-black pl-2"
+                      className="text-lg font-semibold text-black border-r-2 border-gray-300 pl-2"
                     >
                       Remarks
                     </label>
@@ -60,39 +59,36 @@ const Index = ({ name, onClick, falseCondition }) => {
                     </div>
                   </div>
                   {/* work percentage */}
-                  <div className="grid grid-cols-2 items-center border-b-2 border-black">
-                    <label
-                      htmlFor="work"
-                      className="border-r-2 border-black pl-2"
-                    >
-                      Work Completion
-                    </label>
+                  <div className="grid grid-cols-2 items-center border-b-2 border-gray-300 hover:bg-green-400">
+                    <div className="py-4 border-gray-300 border-r-2 ">
+                      <label htmlFor="work" className="border-gray-300 pl-2">
+                        Work Completion (In %)
+                      </label>
+                    </div>
                     <div className="m-2">
                       <Field
                         type="text"
                         placeholder="dfdfd"
-                        className="border border-gray-400 p-2 w-full rounded-lg"
+                        className="border border-gray-400 rounded-md px-2 py-2 w-full"
                       />
                     </div>
                   </div>
                   {/* status */}
-                  <div className="grid grid-cols-2 items-center">
-                    <label
-                      htmlFor="work"
-                      className="border-r-2  border-black pl-2"
-                    >
-                      Status
-                    </label>
+                  <div className="grid grid-cols-2 items-center hover:bg-green-400">
+                    <div className="border-r-2  border-gray-300 py-4">
+                      <label htmlFor="work" className=" pl-2">
+                        Status
+                      </label>
+                    </div>
                     <div className="m-2">
                       <Field
                         type="text"
                         placeholder="dfdfd"
-                        className="border border-gray-400 p-2 w-full rounded-lg"
+                        className="border border-gray-400 p-2 rounded-lg"
                       />
                     </div>
                   </div>
                 </div>
-                {/* <TakeAction /> */}
                 <div className="flex justify-center mt-9">
                   <button
                     type="submit"
