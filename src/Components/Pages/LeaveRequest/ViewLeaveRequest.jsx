@@ -36,7 +36,7 @@ const ViewLeaveRequest = () => {
         }
       })
       .catch((error) => {
-        console.error(error); // Display the error in the console
+        console.error(error);
       });
   };
 
@@ -88,14 +88,29 @@ const ViewLeaveRequest = () => {
               <td className="py-3 px-4 border-l border-r">{val.status}</td>
               <td className="py-3 px-4 border-l border-r text-center">
                 <MdDelete
-                  onClick={() => deleteItem(val.dept_id)}
-                  className="text-3xl hover:scale-110 hover:text-red-500 transition-all delay-100 duration-300"
+                  onClick={() => {
+                    if (
+                      val.status !== "rejected" &&
+                      val.status !== "approved"
+                    ) {
+                      deleteItem(val.dept_id);
+                    }
+                  }}
+                  className={`text-3xl ${
+                    val.status === "rejected" || val.status === "approved"
+                      ? "text-gray-400 cursor-not-allowed"
+                      : "hover:scale-110 hover:text-red-500 transition-all delay-100 duration-300 cursor-pointer"
+                  }`}
                 />
               </td>
               <td className="py-3 px-4 border-l border-r text-center">
                 <Link
-                  state={val}
-                  className="hover:scale-110 transition-all delay-100 duration-300 hover:text-blue-500"
+                  // ...
+                  className={`hover:scale-110 transition-all delay-100 duration-300 ${
+                    val.status === "rejected" || val.status === "approved"
+                      ? "text-gray-400 cursor-not-allowed"
+                      : "hover:text-blue-500"
+                  }`}
                   to={{
                     pathname: `/department/${val.dept_id}`,
                   }}

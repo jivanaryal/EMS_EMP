@@ -7,6 +7,7 @@ const TaskDetails = () => {
   const location = useLocation();
   const [showDelete, setShowDelete] = useState(false);
   const [task, setTask] = useState([]);
+  const [taskHistory, setTaskHistory] = useState([]);
 
   const id = localStorage.getItem("emp_id");
 
@@ -20,6 +21,17 @@ const TaskDetails = () => {
       .catch((error) => {
         console.error(error); // Display the error in the console
       });
+
+    get(`/task_history/${id}`)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res.data);
+          setTaskHistory(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const success = () => {
@@ -29,9 +41,6 @@ const TaskDetails = () => {
   const failure = () => {
     setShowDelete(false);
   };
-
-  console.log(location.state);
-  console.log(location);
 
   return (
     <div className="my-10 mx-10 shadow-sm shadow-gray-400 p-4">

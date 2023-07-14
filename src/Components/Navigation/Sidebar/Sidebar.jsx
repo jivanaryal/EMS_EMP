@@ -24,11 +24,7 @@ const SideBar = () => {
       title: "dashboard",
       path: "/",
     },
-    {
-      icon: <GiArchiveRegister />,
-      title: "attendance",
-      path: "/attendance",
-    },
+
     {
       icon: <FcLeave />,
       title: "leave",
