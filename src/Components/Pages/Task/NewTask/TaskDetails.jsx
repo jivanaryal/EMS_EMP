@@ -136,11 +136,14 @@ const TaskDetails = () => {
                   {val.status}
                 </td>
                 <td className="py-3 px-4 border-l border-r">
-                  <progress
-                    value={val.task_complete}
-                    className="bg-black"
-                  ></progress>
+                  <div className="relative h-2 bg-gray-200 rounded-full">
+                    <div
+                      className="absolute top-0 left-0 h-full bg-green-500 rounded-full"
+                      style={{ width: `${val.task_complete}%` }}
+                    ></div>
+                  </div>
                 </td>
+
                 <td className="py-3 px-4 border-l border-r">{val.time}</td>
               </tr>
             ))}
