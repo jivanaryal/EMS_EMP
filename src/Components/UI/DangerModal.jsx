@@ -17,26 +17,15 @@ const Index = ({ name, onClick, falseCondition, task }) => {
     falseCondition();
   };
 
-  console.log(task);
-
   const postFormData = async (val) => {
-    console.log(task[0]);
-    console.log(val);
-
     const data = {
       emp_final_remark: val.emp_final_remark,
       task_complete: val.task_complete,
       status: val.status,
-      emp_name: task[0].emp_name,
-      task_assign_date: task[0].task_assign_date,
-      task_end_date: task[0].task_end_date,
-      task_priority: task[0].task_priority,
-      task_description: task[0].task_description,
-      task_title: task[0].task_title,
       emp_id: task[0].emp_id,
     };
 
-    update(`/task/${id}`, data)
+    update(`/task/emp/${id}`, data)
       .then((res) => {
         if (res.status === 200) {
           toast.success("The task remarks is posted");
