@@ -3,4 +3,14 @@
 @tailwind utilities;
 
 
+body {
+    overflow-y: scroll;
+
+}
+
+body::-webkit-scrollbar {
+    width: 20px;
+}
+
+
            
