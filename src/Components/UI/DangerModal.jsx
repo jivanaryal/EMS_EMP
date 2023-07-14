@@ -77,10 +77,10 @@ const Index = ({ name, onClick, falseCondition, task }) => {
                 className="m-6 border-2 border-gray-300 shadow-sm shadow-gray-300"
               >
                 {/* ... Remarks*/}
-                <div className="grid grid-cols-2 border-b-2 border-gray-300 hover:bg-green-400">
+                <div className="grid grid-cols-2 border-b-2 border-gray-300 hover:bg-mainColor hover:text-white">
                   <label
                     htmlFor="remarks"
-                    className="text-lg font-semibold text-black border-r-2 border-gray-300 pl-2"
+                    className="text-lg font-semibold border-r-2 border-gray-300 pl-2 hover:text-white"
                   >
                     Remarks
                   </label>
@@ -88,14 +88,14 @@ const Index = ({ name, onClick, falseCondition, task }) => {
                     <Field
                       as="textarea"
                       name="emp_final_remark"
-                      className="w-full h-44 px-2 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring focus:border-blue-300"
+                      className="w-full h-44 px-2 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring focus:border-blue-300 text-black"
                       style={{ paddingTop: "0.5rem" }}
                       placeholder="Remarks..."
                     />
                   </div>
                 </div>
                 {/* ...work completion in percentage */}
-                <div className="grid grid-cols-2 items-center border-b-2 border-gray-300 hover:bg-green-400">
+                <div className="grid grid-cols-2 items-center border-b-2 border-gray-300 hover:bg-mainColor hover:text-white">
                   <div className="py-4 border-gray-300 border-r-2">
                     <label htmlFor="work" className="border-gray-300 pl-2">
                       Work Completion (In %)
@@ -106,13 +106,13 @@ const Index = ({ name, onClick, falseCondition, task }) => {
                       type="text"
                       name="task_complete"
                       placeholder="Work completion percentage"
-                      className="border border-gray-400 rounded-md px-2 py-2 w-full"
+                      className="border border-gray-400 rounded-md px-2 py-2 w-full text-black"
                     />
                   </div>
                 </div>
                 {/* ... ststuss*/}
-                <div className="grid grid-cols-2 items-center border-b-2 border-gray-300 hover:bg-green-400">
-                  <div className="border-r-2 border-gray-300 py-4">
+                <div className="grid grid-cols-2 items-center border-b-2 border-gray-300 hover:bg-mainColor">
+                  <div className="border-r-2 border-gray-300 py-4 hover:text-white">
                     <label htmlFor="work" className="pl-2">
                       Status
                     </label>
