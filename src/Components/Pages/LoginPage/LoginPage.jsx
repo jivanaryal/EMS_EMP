@@ -6,7 +6,7 @@ import UserAuthContextApi, {
 
 import { useNavigate } from "react-router-dom";
 import { post } from "../../../services/api";
-
+import bg from "../../../assests/Images/bg.png";
 const schema = yup.object().shape({
   email: yup.string().required("Email is required").email("Invalid email"),
   password: yup.string().required("Password is required"),
@@ -42,9 +42,14 @@ const LoginPage = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-400 ">
-      <div className="bg-[#ffffff] rounded-lg w-96 p-8 h-96  shadow-lg shadow-blue-300">
-        <h2 className="text-4xl font-bold mb-6 text-center ">Log in</h2>
+    <div
+      className="flex justify-center items-center h-screen bg-gray-400 "
+      style={{ backgroundImage: `url(${bg})` }}
+    >
+      <div className="rounded-lg w-96 p-8 h-96  shadow-sm shadow-gray-300">
+        <h2 className="text-4xl font-bold mb-8 text-center text-white">
+          Employee Login
+        </h2>
         <UserAuthContextApi>
           <UserAuthContext.Consumer>
             {(context) => {
@@ -69,7 +74,7 @@ const LoginPage = () => {
                               <div key={i} className="mb-4">
                                 <label
                                   htmlFor={val.name}
-                                  className="block font-bold mb-2 text-gray-700"
+                                  className="block font-bold mb-2 text-white"
                                 >
                                   {val.name}
                                 </label>
@@ -93,12 +98,6 @@ const LoginPage = () => {
                             className="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700"
                           >
                             Log in
-                          </button>
-                          <button
-                            onClick={() => navigate("/signup")}
-                            className="bg-blue-500 text-white font-bold ml-5 py-2 px-4 rounded-lg hover:bg-blue-700"
-                          >
-                            Signup
                           </button>
                         </Form>
                       );

@@ -125,18 +125,25 @@ const TaskDetails = () => {
               </th>
             </tr>
           </thead>
-          <tbody className="text-gray-600 text-sm font-light">
-            <tr className="border-b border-gray-200 hover:bg-gray-100">
-              <td className="py-3 px-4 border-l border-r">1</td>
-              <td className="py-3 px-4 border-l border-r">
-                Preparing the bills
-              </td>
-              <td className="py-3 px-4 border-l border-r text-center">
-                inProgress
-              </td>
-              <td className="py-3 px-4 border-l border-r">Task Progress</td>
-              <td className="py-3 px-4 border-l border-r">20/12/2022</td>
-            </tr>
+          <tbody className="text-gray-800 text-md font-light">
+            {taskHistory.map((val, i) => (
+              <tr className="border-b border-gray-200 hover:bg-gray-100">
+                <td className="py-3 px-4 border-l border-r">1</td>
+                <td className="py-3 px-4 border-l border-r">
+                  {val.emp_final_remark}
+                </td>
+                <td className="py-3 px-4 border-l border-r text-center">
+                  {val.status}
+                </td>
+                <td className="py-3 px-4 border-l border-r">
+                  <progress
+                    value={val.task_complete}
+                    className="bg-black"
+                  ></progress>
+                </td>
+                <td className="py-3 px-4 border-l border-r">{val.time}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
