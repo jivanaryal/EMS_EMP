@@ -74,7 +74,7 @@ const ViewLeaveRequest = () => {
             </th>
           </tr>
         </thead>
-        <tbody className="text-gray-600 text-sm font-light">
+        <tbody className="text-gray-600 text-sm font-bold">
           {info.map((val, i) => (
             <tr key={i} className="border-b border-gray-200 hover:bg-gray-100">
               <td className="py-3 px-4 border-l text-center">{i + 1}</td>
@@ -85,7 +85,13 @@ const ViewLeaveRequest = () => {
               </td>
               <td className="py-3 px-4 border-l border-r">{val.start_date}</td>
               <td className="py-3 px-4 border-l border-r">{val.end_date}</td>
-              <td className="py-3 px-4 border-l border-r">{val.status}</td>
+              <td
+                className={`py-3 px-4 border-l border-r text-lg  text-center font-black capitalize ${
+                  val.status === "rejected" && "text-red-700"
+                } ${val.status === "approved" && "text-green-700"}`}
+              >
+                {val.status}
+              </td>
               <td className="py-3 px-4 border-l border-r text-center">
                 <MdDelete
                   onClick={() => {
