@@ -26,7 +26,7 @@ const NewTask = () => {
     },
   ];
 
-  const fileterEmployee = task.filter((val) => val.status === "pending");
+  const fileterEmployee = task.filter((val) => val.status === "inprogress");
   return (
     <div className="my-10 mx-10 shadow-sm  shadow-gray-400 p-4">
       <h1 className="font-bold text-xl mb-4">View New Task</h1>
