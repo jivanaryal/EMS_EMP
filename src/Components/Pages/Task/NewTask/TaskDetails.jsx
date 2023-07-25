@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import DangerModal from "../../../UI/DangerModal";
 import { get } from "../../../../services/api";
 
@@ -9,13 +9,16 @@ const TaskDetails = () => {
   const [status, setStatus] = useState(false);
   const [task, setTask] = useState([]);
   const [taskHistory, setTaskHistory] = useState([]);
+  const { id } = useParams();
+  console.log(id);
 
-  const id = localStorage.getItem("emp_id");
+  // const id = localStorage.getItem("emp_id");
 
   useEffect(() => {
-    get(`/task/${id}`)
+    get(`/task/single/${id}`)
       .then((res) => {
         if (res.status === 200) {
+          console.log(res.data);
           setTask(res.data);
           setStatus(res.data[0].status);
         }
@@ -29,6 +32,8 @@ const TaskDetails = () => {
         if (res.status === 200) {
           console.log(res.data);
           setTaskHistory(res.data);
+
+          console.log(res.data[0].status);
         }
       })
       .catch((err) => {
