@@ -14,6 +14,7 @@ import CompletedTask from "./Components/Pages/Task/completedtask/CompletedTask";
 import Check1 from "./dummy/Check1";
 import TaskDetails from "./Components/Pages/Task/NewTask/TaskDetails";
 import InputField from "./dummy/InputField";
+import LeaveApprovalList from "./Components/Pages/LeaveRequest/LeaveHistory";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="leave" element={<Leave />} />
+            <Route path="leave/history" element={<LeaveApprovalList />} />
             <Route path="myprofile" element={<Profile />} />
             <Route path="task" element={<Task />} />
             <Route path="task/new" element={<NewTask />} />

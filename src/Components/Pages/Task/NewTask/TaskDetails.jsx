@@ -6,6 +6,7 @@ import { get } from "../../../../services/api";
 const TaskDetails = () => {
   const location = useLocation();
   const [showDelete, setShowDelete] = useState(false);
+  const [status, setStatus] = useState(false);
   const [task, setTask] = useState([]);
   const [taskHistory, setTaskHistory] = useState([]);
 
@@ -16,6 +17,7 @@ const TaskDetails = () => {
       .then((res) => {
         if (res.status === 200) {
           setTask(res.data);
+          setStatus(res.data[0].status);
         }
       })
       .catch((error) => {
@@ -128,7 +130,7 @@ const TaskDetails = () => {
           <tbody className="text-gray-800 text-md font-light">
             {taskHistory.map((val, i) => (
               <tr className="border-b border-gray-200 hover:bg-gray-100">
-                <td className="py-3 px-4 border-l border-r">1</td>
+                <td className="py-3 px-4 border-l border-r">{i + 1}</td>
                 <td className="py-3 px-4 border-l border-r">
                   {val.emp_final_remark}
                 </td>
@@ -152,7 +154,9 @@ const TaskDetails = () => {
       </div>
       <div className="btn text-center mt-4 ">
         <button
-          className="bg-mainColor text-white rounded-sm p-2"
+          className={`bg-mainColor text-white rounded-sm p-2 ${
+            status === "completed" && "hidden"
+          } `}
           onClick={() => {
             setShowDelete(true);
           }}

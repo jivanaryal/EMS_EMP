@@ -37,7 +37,12 @@ const Profile = () => {
           );
         })}
       </div>
-      <div onClick={() => resetData()}>logout</div>
+      <div
+        onClick={() => resetData()}
+        className=" hover:bg-black hover:text-white hover:border-3 hover:rounded-sm hover:p-1 my-1"
+      >
+        logout
+      </div>
     </div>
   );
 };
