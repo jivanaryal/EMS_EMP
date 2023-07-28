@@ -83,14 +83,6 @@ const Dashboard = () => {
       });
 
     console.log(task, "taskkkkkkkkkkkkkkkk");
-
-    const pending = task.filter((val) => val.status === "pending").length;
-    const inprogress = task.filter((val) => val.status === "inprogress").length;
-    const completed = task.filter((val) => val.status === "completed").length;
-    console.log(completed);
-    setNewData([pending, inprogress, completed]);
-    data.push(newData);
-    console.log(data);
   }, []);
 
   const navigate = useNavigate();
@@ -117,7 +109,7 @@ const Dashboard = () => {
                   <Link to={val.path} key={val.id}>
                     <div
                       style={{ backgroundColor: val.colors1 }}
-                      className="rounded-lg flex flex-col justify-center items-center text-white text-center p-4 shadow-md transform transition-all hover:scale-105"
+                      className="rounded-lg flex flex-col justify-center items-center text-white text-center p-4 shadow-md transform transition-all hover:scale-105 h-52"
                     >
                       <div className="text-4xl font-bold rounded-md p-4 mb-4">
                         {val.icons}
