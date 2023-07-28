@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import DangerModal from "../../../UI/DangerModal";
 import { get } from "../../../../services/api";
 
 const TaskDetails = () => {
   const location = useLocation();
   const [showDelete, setShowDelete] = useState(false);
+  const [status, setStatus] = useState(false);
   const [task, setTask] = useState([]);
   const [taskHistory, setTaskHistory] = useState([]);
+  const { id } = useParams();
+  console.log(id);
 
-  const id = localStorage.getItem("emp_id");
+  // const id = localStorage.getItem("emp_id");
 
   useEffect(() => {
-    get(`/task/${id}`)
+    get(`/task/single/${id}`)
       .then((res) => {
         if (res.status === 200) {
+          console.log(res.data);
           setTask(res.data);
+          setStatus(res.data[0].status);
         }
       })
       .catch((error) => {
@@ -27,6 +32,8 @@ const TaskDetails = () => {
         if (res.status === 200) {
           console.log(res.data);
           setTaskHistory(res.data);
+
+          console.log(res.data[0].status);
         }
       })
       .catch((err) => {
@@ -136,7 +143,7 @@ const TaskDetails = () => {
                   {val.status}
                 </td>
                 <td className="py-3 px-4 border-l border-r">
-                  <div className="relative h-2 bg-gray-300 rounded-full">
+                  <div className="relative h-2 w-48 bg-gray-200 rounded-full">
                     <div
                       className="absolute top-0 left-0 h-full bg-mainColor rounded-full"
                       style={{ width: `${val.task_complete}%` }}
@@ -152,7 +159,9 @@ const TaskDetails = () => {
       </div>
       <div className="btn text-center mt-4 ">
         <button
-          className="bg-mainColor text-white rounded-sm p-2"
+          className={`bg-mainColor text-white rounded-sm p-2 ${
+            status === "completed" && "hidden"
+          } `}
           onClick={() => {
             setShowDelete(true);
           }}

@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import UserAuthContextApi, {
   UserAuthContext,
 } from "../../../Hoc/ContextApi/UserAuthContextApi";
+import { toast, ToastContainer } from "react-toastify";
 
 import { useNavigate } from "react-router-dom";
 import { post } from "../../../services/api";
@@ -27,18 +28,29 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const postLoginForm = async (val) => {
     try {
-      post("/createemp/login", val).then((res) => {
+      const res = await post("/createemp/login", val);
+
+      console.log(res.data);
+      if (res.status === 200) {
+        localStorage.setItem("token", res.data.token);
+        const emp_id = res.data.emp_id;
         console.log(res.data);
-        if (res.status === 200) {
-          localStorage.setItem("token", res.data.token);
-          const emp_id = res.data.emp_id;
-          console.log(res.data);
-          localStorage.setItem("emp_id", emp_id);
-          navigate("/", { state: { emp_id } });
-        }
-      });
+        localStorage.setItem("emp_id", emp_id);
+        navigate("/", { state: { emp_id } });
+      }
     } catch (error) {
       console.log(error);
+
+      // Handle the error and display toast notification
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("An unexpected error occurred. Please try again later.");
+      }
     }
   };
   return (
@@ -46,7 +58,7 @@ const LoginPage = () => {
       className="flex justify-center items-center h-screen bg-gray-400 "
       style={{ backgroundImage: `url(${bg})` }}
     >
-      <div className="rounded-lg w-96 p-8 h-96  shadow-sm shadow-gray-300">
+      <div className="rounded-lg w-96 p-8 h-96  shadow-sm shadow-gray-300 backdrop-filter bg-opacity-20">
         <h2 className="text-4xl font-bold mb-8 text-center text-white">
           Employee Login
         </h2>
@@ -92,6 +104,7 @@ const LoginPage = () => {
                               </div>
                             );
                           })}
+                          <ToastContainer />
 
                           <button
                             type="submit"

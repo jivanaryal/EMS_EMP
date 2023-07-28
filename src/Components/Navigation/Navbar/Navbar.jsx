@@ -32,16 +32,21 @@ const Navbar = () => {
 
   // const navigate = useNavigate();
   return (
-    <div className="h-16 border-2 z-30  shadow-lg fixed top-0 w-full bg-secondColor navbar">
+    <div
+      className="h-16 border-2 z-30 border-gray-800 shadow-lg bg-secondColor text-white fixed top-0 w-full navbar"
+      // style={{
+      //   background: "linear-gradient(to right, #000460, #004e82)",
+      // }}
+    >
       <div
         className="w-full h-full flex items-center
-      pl-4 justify-around pr-7"
+      justify-around pr-7"
       >
         {/* search  */}
-        <div className="searchbox flex items-center relative border-2 border-gray-200 rounded-md ">
+        <div className="searchbox invisible flex items-center relative border-2  rounded-md ">
           <input
             type="search"
-            className="text-black focus:outline-none p-2 pl-10 font-4xl bg-[#FAFAFA]"
+            className="text-black focus:outline-none p-2 pl-10 font-4xl "
             placeholder="search.."
           />
           <GoSearch className="absolute left-3 text-black" />
@@ -51,14 +56,14 @@ const Navbar = () => {
         {employee.map((val, i) => {
           return (
             <div className="flex relative  items-center gap-3">
-              <div className="">
+              <div className="font-bold text-lg">
                 {val.first_name} {val.middle_name} {val.last_name}
               </div>
               <div className=" rounded-full ">
                 <img
-                  src={`http://192.168.18.7:5000/${val.image}`}
+                  src={`http://localhost:5000/${val.image}`}
                   alt="logo"
-                  className=" w-11 h-11 rounded-full border-2"
+                  className=" w-12 h-12 rounded-full border-2"
                 />
               </div>
               <div className=" ">
@@ -81,7 +86,7 @@ const Navbar = () => {
                 )}
 
                 {show && (
-                  <div className="w-56 text-black bg-white rounded-md shadow-sm shadow-gray-300 absolute top-[3.4rem]  right-[1px] z-20 py-4 cursor-pointer border-1 border-gray-300 h-28 px-3">
+                  <div className="w-56 text-black bg-white rounded-md shadow-sm shadow-gray-400 absolute top-[3.4rem]  right-[1px] -z-50  cursor-pointer border-1 border-gray-300 py-2 px-3">
                     <div>
                       <Profile />
                     </div>

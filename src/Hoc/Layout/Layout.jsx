@@ -5,17 +5,29 @@ import Navbar from "../../Components/Navigation/Navbar/Navbar";
 
 const Layout = () => {
   return (
-    <div className="flex">
+    <div className="flex ">
       <div className="flex-none w-1/6">
         <div className="sticky top-0 min-h-screen max-h-screen overflow-hidden shadow-xl ">
           <Sidebar />
         </div>
       </div>
-      <div className="flex-auto z-10">
-        <div className="z-50">
+      <div
+        className="flex-auto z-10"
+        style={{
+          background:
+            "linear-gradient(to right, #f9f8ff, #f7f9fc, #fcfbf7, #f8f7f9, #f9f8ff)",
+        }}
+      >
+        <div className="z-50 ">
           <Navbar />
         </div>
-        <div className="relative pl-2 mt-24 -z-10">
+        <div
+          className="relative  mt-[4.1rem] mx-10 -z-10"
+          style={{
+            background:
+              "linear-gradient(to right, #f9f8ff, #f7f9fc, #fcfbf7, #f8f7f9, #f9f8ff)",
+          }}
+        >
           <Outlet />
         </div>
       </div>

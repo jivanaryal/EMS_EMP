@@ -44,49 +44,62 @@ const ViewLeaveRequest = () => {
     fetchData();
   }, []);
 
+  const filterInfo = info.filter((val) => val.status === "pending");
+
   const newData = useMemo(() => newCallBack(), [toggle]);
   return (
     <div className="my-10 mx-10 shadow-sm shadow-gray-400 p-4">
+      <Link to="/leave/history">
+        <div className="border-2 absolute right-4 top-[-1px] capitalize py-2  shadow-md px-4 text-xl font-bold   cursor-pointer rounded-md w-fit   mt-4 hover:bg-mainColor">
+          Leave History
+        </div>
+      </Link>
       <h1 className="font-bold text-xl">View Leave</h1>
       <table className="w-full rounded-lg shadow-sm">
         <thead className="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
           <tr>
-            <th className="py-3 text-start px-6 border-r border-b border-gray-200">
+            <th className="py-2 text-start px-6 border-r border-b border-gray-200">
               S.No
             </th>
-            <th className="py-3 px-6 border-r border-b border-gray-200">
+            <th className="py-2 px-6 border-r border-b border-gray-200">
               Employee Name
             </th>
-            <th className="py-3 px-6 border-r border-b border-gray-200">
+            <th className="py-2 px-6 border-r border-b border-gray-200">
               Start Date
             </th>
-            <th className="py-3 px-6 border-r border-b border-gray-200">
+            <th className="py-2 px-6 border-r border-b border-gray-200">
               End Date
             </th>
-            <th className="py-3 px-6 border-r border-b border-gray-200">
+            <th className="py-2 px-6 border-r border-b border-gray-200">
               Status
             </th>
-            <th className="py-3 px-6 border-r border-b border-gray-200">
+            <th className="py-2 px-6 border-r border-b border-gray-200">
               Delete
             </th>
-            <th className="py-3 px-6 border-r border-b border-gray-200">
+            <th className="py-2 px-6 border-r border-b border-gray-200">
               Edit
             </th>
           </tr>
         </thead>
-        <tbody className="text-gray-600 text-sm font-light">
-          {info.map((val, i) => (
+        <tbody className="text-gray-600 text-sm font-bold">
+          {filterInfo.map((val, i) => (
             <tr key={i} className="border-b border-gray-200 hover:bg-gray-100">
-              <td className="py-3 px-4 border-l text-center">{i + 1}</td>
-              <td className="py-3 px-4 border-l text-center">
+              <td className="py-2 px-4 border-l text-center">{i + 1}</td>
+              <td className="py-2 px-4 border-l text-center">
                 {val.first_name}
                 {val.middle_name}
                 {val.last_name}
               </td>
-              <td className="py-3 px-4 border-l border-r">{val.start_date}</td>
-              <td className="py-3 px-4 border-l border-r">{val.end_date}</td>
-              <td className="py-3 px-4 border-l border-r">{val.status}</td>
-              <td className="py-3 px-4 border-l border-r text-center">
+              <td className="py-2 px-4 border-l border-r">{val.start_date}</td>
+              <td className="py-2 px-4 border-l border-r">{val.end_date}</td>
+              <td
+                className={`py-2 px-4 border-l border-r text-lg  text-center font-black capitalize ${
+                  val.status === "rejected" && "text-red-700"
+                } ${val.status === "approved" && "text-green-700"}`}
+              >
+                {val.status}
+              </td>
+              <td className="py-2 px-4 border-l border-r text-center">
                 <MdDelete
                   onClick={() => {
                     if (
@@ -103,7 +116,7 @@ const ViewLeaveRequest = () => {
                   }`}
                 />
               </td>
-              <td className="py-3 px-4 border-l border-r text-center">
+              <td className="py-2 px-4 border-l border-r text-center">
                 <Link
                   // ...
                   className={`hover:scale-110 transition-all delay-100 duration-300 ${

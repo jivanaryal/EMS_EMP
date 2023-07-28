@@ -54,7 +54,7 @@ const SideBar = () => {
     },
   ];
   return (
-    <div className="pl-5  h-screen bg-gray-900 text-white">
+    <div className="pl-5  h-screen bg-mainColor text-white">
       <div className=" text-[#FDF7FF] flex justify-center font-extrabold py-8">
         <img src={logo} alt="logo" className="h-20 w-20 bg-transparent" />
       </div>
@@ -65,9 +65,9 @@ const SideBar = () => {
             <Link to={val.path}>
               {" "}
               <div
-                className={`flex  pl-4 py-3 rounded-lg items-center  text-base text-purple-200 bg-gray-800 hover:bg-gray-700 ${
+                className={`flex  border-2 pl-4 py-3 rounded-lg items-center  text-base    ${
                   location.pathname === val.path &&
-                  "text-gray-700 bg-mainColor shadow-md font-bold capitalize"
+                  " bg-[#F6F6F6] text-black  shadow-md font-bold capitalize"
                 }`}
                 onClick={() => toggleDropdown(val.title)}
               >
@@ -79,7 +79,12 @@ const SideBar = () => {
               <div className="pl-4">
                 {val.options.map((option, index) => (
                   <Link to={option.path} key={index}>
-                    <div className="flex py-2 items-centerflex pl-2 my-2 rounded-lg items-center  text-base text-purple-200 bg-gray-800 hover:bg-gray-700 ">
+                    <div
+                      className={`flex py-2 border-2 items-centerflex pl-2 my-2 rounded-lg items-center  text-base  ${
+                        location.pathname === option.path &&
+                        "bg-[#F6F6F6] text-black  shadow-md font-bold capitalize"
+                      }`}
+                    >
                       <div className="mr-2">{option.icon}</div>
                       <div>{option.title}</div>
                     </div>

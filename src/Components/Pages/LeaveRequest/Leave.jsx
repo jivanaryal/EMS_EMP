@@ -29,7 +29,7 @@ const Leave = () => {
                                     ${
                                       val.id === Active
                                         ? "bg-mainColor  text-[#ffffff] scale-110"
-                                        : "bg-secondColor"
+                                        : "bg-[#F6F6F6] text-black  shadow-md font-bold capitalize"
                                     }`}
               >
                 {val.name}

@@ -8,12 +8,13 @@ import Leave from "./Components/Pages/LeaveRequest/Leave";
 import Profile from "./Components/Navigation/Navbar/Profile/Profile";
 import Task from "./Components/Pages/Task/Task";
 import NewTask from "./Components/Pages/Task/NewTask/NewTask";
-import InProgressTask from "./Components/Pages/Task/InProgressTask";
-import CompletedTask from "./Components/Pages/Task/CompletedTask";
+import InProgressTask from "./Components/Pages/Task/Inprogresstask/InProgressTask";
+import CompletedTask from "./Components/Pages/Task/completedtask/CompletedTask";
 // import UpdateTask from "./Components/Pages/Task/NewTask/UpdateTask";
 import Check1 from "./dummy/Check1";
 import TaskDetails from "./Components/Pages/Task/NewTask/TaskDetails";
 import InputField from "./dummy/InputField";
+import LeaveApprovalList from "./Components/Pages/LeaveRequest/LeaveHistory";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="leave" element={<Leave />} />
+            <Route path="leave/history" element={<LeaveApprovalList />} />
             <Route path="myprofile" element={<Profile />} />
             <Route path="task" element={<Task />} />
             <Route path="task/new" element={<NewTask />} />

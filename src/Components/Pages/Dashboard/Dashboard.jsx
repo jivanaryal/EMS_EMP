@@ -3,12 +3,58 @@ import { Link, useNavigate } from "react-router-dom";
 import UserAuthContextApi, {
   UserAuthContext,
 } from "../../../Hoc/ContextApi/UserAuthContextApi";
+import { HiBuildingOffice2 } from "react-icons/hi2";
+import { HiUserGroup } from "react-icons/hi";
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
+import { IoMdExit } from "react-icons/io";
+import { BiTask } from "react-icons/bi";
 import { get } from "../../../services/api";
 import PieChart from "./PieChart";
+
+const data = [
+  {
+    title: "View Leave Request",
+    // num: "24",
+    intro: "View Leave",
+    colors: "#FFEFE7",
+    colors1: "#EC9E09",
+    path: "/leave",
+    icons: <HiBuildingOffice2 />,
+  },
+  {
+    title: "New Task",
+    // num: "24",
+    intro: "View Employee",
+    colors: "#E8F0FB",
+    colors1: "#595FF0",
+    path: "/task/new",
+    icons: <HiUserGroup />,
+  },
+  {
+    title: "Inprogress Task",
+    // num: "24",
+    intro: "Assign Task",
+    colors: "#FDEBF9",
+    colors1: "#16C6BC",
+    path: "/task/inprogress",
+    icons: <IoMdExit />,
+  },
+  {
+    title: "Completed Task",
+    // num: "24",
+    intro: "View Leave Request",
+    colors: "#F1F9FB",
+    colors1: "#F74E61",
+    path: "/task/completed",
+    icons: <BiTask />,
+  },
+];
 
 const Dashboard = () => {
   const [singleEmployee, setSingleEmployee] = useState([]);
   const [employee, setEmployee] = useState([]);
+  const [task, setTask] = useState([]);
+  const [newData, setNewData] = useState([]);
   const storedUserId = localStorage.getItem("emp_id");
 
   useEffect(() => {
@@ -28,6 +74,23 @@ const Dashboard = () => {
       .catch((err) => {
         console.log(err);
       });
+    get(`/task/${storedUserId}`)
+      .then((res) => {
+        setTask(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    console.log(task, "taskkkkkkkkkkkkkkkk");
+
+    const pending = task.filter((val) => val.status === "pending").length;
+    const inprogress = task.filter((val) => val.status === "inprogress").length;
+    const completed = task.filter((val) => val.status === "completed").length;
+    console.log(completed);
+    setNewData([pending, inprogress, completed]);
+    data.push(newData);
+    console.log(data);
   }, []);
 
   const navigate = useNavigate();
@@ -40,70 +103,72 @@ const Dashboard = () => {
   return (
     <UserAuthContextApi>
       <UserAuthContext.Provider>
-        <div className="grid grid-cols-2 gap-32">
-          <div
-            div
-            className=" shadow-gray-400 shadow-md grid place-content-center w-full"
-          >
-            {singleEmployee.map((val, i) => (
-              <div className=" bg-white capitalize rounded-lg px-10">
-                <h1 className="text-3xl font-bold mb-4">Employee Details</h1>
-                <div className="mb-4">
-                  <span className="text-gray-500 font-semibold"></span>{" "}
-                  <img
-                    src={`http://192.168.18.7:5000/${val.image}`}
-                    alt=""
-                    className="w-32 h-32 rounded-full object-cover"
-                  />
-                </div>
-                <div className="mb-4 text-2xl">
-                  <span className="text-gray-500 font-semibold">Name:</span>{" "}
-                  {val.first_name} {val.middle_name} {val.last_name}
-                </div>
-                <div className="mb-4 text-2xl">
-                  <span className="text-gray-500 font-semibold">
-                    Department:
-                  </span>{" "}
-                  {val.dept_name}
-                </div>
-                <div className="mb-4 text-2xl">
-                  <span className="text-gray-500 font-semibold">Gender:</span>{" "}
-                  {val.gender}
-                </div>
-                <div className="mb-2 text-2xl">
-                  <span className="text-gray-500 font-semibold">Salary:</span>{" "}
-                  {val.salary}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="w-11/12  shadow-gray-400 shadow-md p-5">
-            <PieChart employee={employee} />
-          </div>
-          {/* <div className="employee_data pl-6 shadow-sm  shadow-mainColor w-full  rounded-lg  ">
-            <h1 className="text-2xl font-bold mb-8 pt-6 mt-4">
-              Top Salary Employees
-            </h1>
-            <div className="w-full">
-              {singleEmployee.map((emp, index) => (
-                <div key={index} className="flex items-center mb-4 w-full">
-                  <img
-                    src={`http://localhost:5000/${emp.image}`}
-                    alt="Employee"
-                    className="w-12 h-12 rounded-full mr-5"
-                  />
-                  <div className="grid w-full grid-cols-4 gap-4  text-sm text-[#5E5E5E] font-bold items-center">
-                    <div className="text-gray-700 capitalize ">
-                      {emp.first_name} {emp.middle_name} {emp.last_name}
+        <div className="container mx-auto py-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div
+              className="bg-white rounded-lg p-8 shadow-md"
+              style={{
+                background:
+                  "linear-gradient(to right, #f9f8ff, #f7f9fc, #fcfbf7, #f8f7f9, #f9f8ff)",
+              }}
+            >
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                {data.map((val) => (
+                  <Link to={val.path} key={val.id}>
+                    <div
+                      style={{ backgroundColor: val.colors1 }}
+                      className="rounded-lg flex flex-col justify-center items-center text-white text-center p-4 shadow-md transform transition-all hover:scale-105"
+                    >
+                      <div className="text-4xl font-bold rounded-md p-4 mb-4">
+                        {val.icons}
+                      </div>
+                      <div className="text-xl font-bold mb-2">{val.title}</div>
+
+                      <div className="text-2xl">{val.num}</div>
                     </div>
-                    <div>{emp.dept_name}</div>
-                    <div>{emp.job}</div>
-                    <div className="font-bold text-black">${emp.salary}</div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              {singleEmployee.map((val) => (
+                <div
+                  key={val.id}
+                  className="bg-white capitalize rounded-lg p-8 shadow-md"
+                >
+                  <div className="text-center mb-4">
+                    <img
+                      src={`http://localhost:5000/${val.image}`}
+                      alt=""
+                      className="w-40 h-40 rounded-full object-cover border-4 border-blue-500 shadow-lg mx-auto"
+                    />
+                  </div>
+                  <h1 className="text-4xl font-bold mb-4 text-blue-500 text-center">
+                    My Details
+                  </h1>
+                  <div className="text-lg mb-2">
+                    <span className="font-semibold text-gray-600">Name:</span>{" "}
+                    {val.first_name} {val.middle_name} {val.last_name}
+                  </div>
+                  <div className="text-lg mb-2">
+                    <span className="font-semibold text-gray-600">
+                      Department:
+                    </span>{" "}
+                    {val.dept_name}
+                  </div>
+                  <div className="text-lg mb-2">
+                    <span className="font-semibold text-gray-600">Gender:</span>{" "}
+                    {val.gender}
+                  </div>
+                  <div className="text-lg">
+                    <span className="font-semibold text-gray-600">Salary:</span>{" "}
+                    ${val.salary}
                   </div>
                 </div>
               ))}
             </div>
-          </div> */}
+          </div>
         </div>
       </UserAuthContext.Provider>
     </UserAuthContextApi>
