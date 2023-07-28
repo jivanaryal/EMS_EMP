@@ -111,8 +111,8 @@ const Index = ({ name, onClick, falseCondition, task }) => {
                   </div>
                 </div>
                 {/* ... ststuss*/}
-                <div className="grid grid-cols-2 items-center border-b-2 border-gray-300 hover:bg-mainColor">
-                  <div className="border-r-2 border-gray-300 py-4 hover:text-white">
+                <div className="grid grid-cols-2 items-center border-b-2 border-gray-300 hover:bg-mainColor hover:text-white">
+                  <div className="border-r-2 border-gray-300 py-4">
                     <label htmlFor="work" className="pl-2">
                       Status
                     </label>
@@ -121,7 +121,7 @@ const Index = ({ name, onClick, falseCondition, task }) => {
                     <Field
                       as="select"
                       name="status"
-                      className="border border-gray-400 p-2 w-full rounded-lg"
+                      className="border border-gray-400 p-2 w-full rounded-lg text-black"
                     >
                       <option value="">Select Status</option>
                       <option value="inprogress">In Progress</option>

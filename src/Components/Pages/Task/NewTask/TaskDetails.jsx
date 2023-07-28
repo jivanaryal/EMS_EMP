@@ -128,7 +128,7 @@ const TaskDetails = () => {
           <tbody className="text-gray-800 text-md font-light">
             {taskHistory.map((val, i) => (
               <tr className="border-b border-gray-200 hover:bg-gray-100">
-                <td className="py-3 px-4 border-l border-r">1</td>
+                <td className="py-3 px-4 border-l border-r">{i + 1}</td>
                 <td className="py-3 px-4 border-l border-r">
                   {val.emp_final_remark}
                 </td>
@@ -136,9 +136,9 @@ const TaskDetails = () => {
                   {val.status}
                 </td>
                 <td className="py-3 px-4 border-l border-r">
-                  <div className="relative h-2 bg-gray-200 rounded-full">
+                  <div className="relative h-2 bg-gray-300 rounded-full">
                     <div
-                      className="absolute top-0 left-0 h-full bg-green-500 rounded-full"
+                      className="absolute top-0 left-0 h-full bg-mainColor rounded-full"
                       style={{ width: `${val.task_complete}%` }}
                     ></div>
                   </div>
