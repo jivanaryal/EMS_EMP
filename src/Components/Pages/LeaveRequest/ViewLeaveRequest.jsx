@@ -50,7 +50,7 @@ const ViewLeaveRequest = () => {
   return (
     <div className="my-10 mx-10 shadow-sm shadow-gray-400 p-4">
       <Link to="/leave/history">
-        <div className="border-2 absolute right-4 top-[-1px] capitalize py-2  shadow-md px-4 text-xl font-bold  shadow-mainColor cursor-pointer rounded-md w-fit   mt-4 hover:bg-mainColor">
+        <div className="border-2 absolute right-4 top-[-1px] capitalize py-2  shadow-md px-4 text-xl font-bold   cursor-pointer rounded-md w-fit   mt-4 hover:bg-mainColor">
           Leave History
         </div>
       </Link>

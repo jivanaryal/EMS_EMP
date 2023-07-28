@@ -32,16 +32,21 @@ const Navbar = () => {
 
   // const navigate = useNavigate();
   return (
-    <div className="h-16 border-2 z-30  shadow-lg fixed top-0 w-full bg-secondColor navbar">
+    <div
+      className="h-16 border-2 z-30 border-gray-800 shadow-lg bg-secondColor text-white fixed top-0 w-full navbar"
+      // style={{
+      //   background: "linear-gradient(to right, #000460, #004e82)",
+      // }}
+    >
       <div
         className="w-full h-full flex items-center
-      pl-4 justify-around pr-7"
+      justify-around pr-7"
       >
         {/* search  */}
-        <div className="searchbox invisible flex items-center relative border-2 border-gray-200 rounded-md ">
+        <div className="searchbox invisible flex items-center relative border-2  rounded-md ">
           <input
             type="search"
-            className="text-black focus:outline-none p-2 pl-10 font-4xl bg-[#FAFAFA]"
+            className="text-black focus:outline-none p-2 pl-10 font-4xl "
             placeholder="search.."
           />
           <GoSearch className="absolute left-3 text-black" />

@@ -58,7 +58,7 @@ const LoginPage = () => {
       className="flex justify-center items-center h-screen bg-gray-400 "
       style={{ backgroundImage: `url(${bg})` }}
     >
-      <div className="rounded-lg w-96 p-8 h-96  shadow-sm shadow-gray-300">
+      <div className="rounded-lg w-96 p-8 h-96  shadow-sm shadow-gray-300 backdrop-filter bg-opacity-20">
         <h2 className="text-4xl font-bold mb-8 text-center text-white">
           Employee Login
         </h2>
