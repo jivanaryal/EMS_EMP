@@ -10,51 +10,13 @@ import { IoMdExit } from "react-icons/io";
 import { BiTask } from "react-icons/bi";
 import { get } from "../../../services/api";
 import PieChart from "./PieChart";
-
-const data = [
-  {
-    title: "View Leave Request",
-    // num: "24",
-    intro: "View Leave",
-    colors: "#FFEFE7",
-    colors1: "#EC9E09",
-    path: "/leave",
-    icons: <HiBuildingOffice2 />,
-  },
-  {
-    title: "New Task",
-    // num: "24",
-    intro: "View Employee",
-    colors: "#E8F0FB",
-    colors1: "#595FF0",
-    path: "/task/new",
-    icons: <HiUserGroup />,
-  },
-  {
-    title: "Inprogress Task",
-    // num: "24",
-    intro: "Assign Task",
-    colors: "#FDEBF9",
-    colors1: "#16C6BC",
-    path: "/task/inprogress",
-    icons: <IoMdExit />,
-  },
-  {
-    title: "Completed Task",
-    // num: "24",
-    intro: "View Leave Request",
-    colors: "#F1F9FB",
-    colors1: "#F74E61",
-    path: "/task/completed",
-    icons: <BiTask />,
-  },
-];
+import { controllers } from "chart.js";
 
 const Dashboard = () => {
   const [singleEmployee, setSingleEmployee] = useState([]);
   const [employee, setEmployee] = useState([]);
   const [task, setTask] = useState([]);
-  const [newData, setNewData] = useState([]);
+  // const [newTask, setNewTask] = useState([]);
   const storedUserId = localStorage.getItem("emp_id");
 
   useEffect(() => {
@@ -77,6 +39,7 @@ const Dashboard = () => {
     get(`/task/${storedUserId}`)
       .then((res) => {
         setTask(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -84,14 +47,18 @@ const Dashboard = () => {
 
     console.log(task, "taskkkkkkkkkkkkkkkk");
 
-    const pending = task.filter((val) => val.status === "pending").length;
-    const inprogress = task.filter((val) => val.status === "inprogress").length;
-    const completed = task.filter((val) => val.status === "completed").length;
-    console.log(completed);
-    setNewData([pending, inprogress, completed]);
-    data.push(newData);
-    console.log(data);
+    // const pending = task.filter((val) => val.status === "pending").length;
+    // const inprogress = task.filter((val) => val.status === "inprogress").length;
+    // const completed = task.filter((val) => val.status === "completed").length;
+    // console.log(completed);
+    // setNewData([pending, inprogress, completed]);
+    // data.push(newData);
+    // console.log(data);
   }, []);
+
+  const pending = task.filter((val) => val.status === "pending").length;
+  const inprogress = task.filter((val) => val.status === "inprogress").length;
+  const completed = task.filter((val) => val.status === "completed").length;
 
   const navigate = useNavigate();
 
@@ -99,11 +66,48 @@ const Dashboard = () => {
     window.localStorage.clear();
     navigate("/login");
   };
+  const data = [
+    {
+      title: "Take Leave Request",
+      intro: "View Leave",
+      colors: "#FFEFE7",
+      colors1: "#EC9E09",
+      path: "/leave",
+      icons: <HiBuildingOffice2 />,
+    },
+    {
+      title: `View ${pending} New Task`,
+      // num: "24",
+      intro: "View Employee",
+      colors: "#E8F0FB",
+      colors1: "#595FF0",
+      path: "/task/new",
+      icons: <HiUserGroup />,
+    },
+    {
+      title: `View ${inprogress} Inprogress Task`,
+      // num: "24",
+      intro: "Assign Task",
+      colors: "#FDEBF9",
+      colors1: "#16C6BC",
+      path: "/task/inprogress",
+      icons: <IoMdExit />,
+    },
+    {
+      title: ` View ${completed} Completed Task`,
+      // num: "24",
+      intro: "View Leave Request",
+      colors: "#F1F9FB",
+      colors1: "#F74E61",
+      path: "/task/completed",
+      icons: <BiTask />,
+    },
+  ];
 
   return (
     <UserAuthContextApi>
       <UserAuthContext.Provider>
-        <div className="container mx-auto py-8">
+        <div className="container mx-auto py-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div
               className="bg-white rounded-lg p-8 shadow-md"
@@ -117,12 +121,14 @@ const Dashboard = () => {
                   <Link to={val.path} key={val.id}>
                     <div
                       style={{ backgroundColor: val.colors1 }}
-                      className="rounded-lg flex flex-col justify-center items-center text-white text-center p-4 shadow-md transform transition-all hover:scale-105"
+                      className="rounded-lg flex h-52 flex-col justify-center items-center text-white text-center p-4 shadow-md transform transition-all hover:scale-105"
                     >
                       <div className="text-4xl font-bold rounded-md p-4 mb-4">
                         {val.icons}
                       </div>
-                      <div className="text-xl font-bold mb-2">{val.title}</div>
+                      <div className="text-xl font-bold mb-2 font-link ">
+                        {val.title}
+                      </div>
 
                       <div className="text-2xl">{val.num}</div>
                     </div>

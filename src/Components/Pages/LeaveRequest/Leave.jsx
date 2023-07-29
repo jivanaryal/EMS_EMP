@@ -5,7 +5,7 @@ import ViewLeaveRequest from "./ViewLeaveRequest";
 import LeaveRequest from "./LeaveRequest";
 
 const Leave = () => {
-  const [Active, setActive] = useState("view");
+  const [Active, setActive] = useState("add");
   const data = [
     {
       id: "add",

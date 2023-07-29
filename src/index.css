@@ -5,7 +5,24 @@
 
 body {
     overflow-y: scroll;
+    
+          
+    
 
+}
+
+thead,
+tbody {
+    font-family: Arial, sans-serif;
+}
+label {
+    font-family: 'Helvetica', sans-serif;
+    /* or 'Roboto', sans-serif; */
+}
+div{
+    
+            font-family: 'Montserrat', sans-serif;
+        
 }
 
 body::-webkit-scrollbar {

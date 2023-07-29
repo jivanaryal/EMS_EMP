@@ -56,7 +56,7 @@ const SideBar = () => {
   return (
     <div className="pl-5  h-screen bg-mainColor text-white">
       <div className=" text-[#FDF7FF] flex justify-center font-extrabold py-8">
-        <img src={logo} alt="logo" className="h-20 w-20 bg-transparent" />
+        <img src={logo} alt="logo" className="h-24 w-24 bg-transparent" />
       </div>
       <div className="text-purple-100 pb-4">MAIN MENU</div>
       <div className="flex flex-col h-full gap-4">

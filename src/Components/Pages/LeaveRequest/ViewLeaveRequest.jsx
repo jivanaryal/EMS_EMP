@@ -93,7 +93,7 @@ const ViewLeaveRequest = () => {
               <td className="py-2 px-4 border-l border-r">{val.start_date}</td>
               <td className="py-2 px-4 border-l border-r">{val.end_date}</td>
               <td
-                className={`py-2 px-4 border-l border-r text-lg  text-center font-black capitalize ${
+                className={`py-2 px-4 border-l border-r text-base  text-center font-black capitalize ${
                   val.status === "rejected" && "text-red-700"
                 } ${val.status === "approved" && "text-green-700"}`}
               >

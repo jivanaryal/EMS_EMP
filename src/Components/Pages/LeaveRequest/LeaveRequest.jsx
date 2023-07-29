@@ -54,15 +54,25 @@ const LeaveRequest = () => {
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               {FormField.map((field, index) => (
                 <div key={index} className="text-gray-600">
-                  <label htmlFor={field.name} className="text-sm font-semibold">
+                  <label htmlFor={field.name} className="text-lg font-semibold">
                     {field.name}
                   </label>
-                  <Field
-                    type={field.type}
-                    name={field.name}
-                    className="border border-gray-400 rounded-md py-2 px-3 w-full"
-                    placeholder={`Enter ${field.name}`}
-                  />
+                  {field.name === "message" ? (
+                    <Field
+                      as="textarea" // Use a textarea element for the "message" field
+                      type={field.type}
+                      name={field.name}
+                      className="border border-gray-400 rounded-md py-2 px-3 w-full resize-none h-32" // Customize the width and height here
+                      placeholder={`Enter ${field.name}`}
+                    />
+                  ) : (
+                    <Field
+                      type={field.type}
+                      name={field.name}
+                      className="border border-gray-400 rounded-md py-2 px-3 w-full"
+                      placeholder={`Enter ${field.name}`}
+                    />
+                  )}
                   <ErrorMessage
                     name={field.name}
                     component="div"
