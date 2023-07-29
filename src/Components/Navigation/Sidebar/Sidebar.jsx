@@ -71,12 +71,12 @@ const SideBar = () => {
                 }`}
                 onClick={() => toggleDropdown(val.title)}
               >
-                <div className="text-xl">{val.icon}</div>
+                <div className="text-xl ">{val.icon}</div>
                 <div className="ml-2 capitalize">{val.title}</div>
               </div>
             </Link>
             {val.options && expandedOption === val.title && (
-              <div className="pl-4">
+              <div className="pl-4 border-[1px] border-gray-500 shadow-md shadow-gray-500">
                 {val.options.map((option, index) => (
                   <Link to={option.path} key={index}>
                     <div

@@ -33,7 +33,7 @@ const Navbar = () => {
   // const navigate = useNavigate();
   return (
     <div
-      className="h-16 border-2 z-30 border-gray-800 shadow-lg bg-secondColor text-white fixed top-0 w-full navbar"
+      className="h-16 border-2 z-30 border-gray-500 shadow-2xl bg-secondColor text-white fixed top-0 w-full navbar"
       // style={{
       //   background: "linear-gradient(to right, #000460, #004e82)",
       // }}

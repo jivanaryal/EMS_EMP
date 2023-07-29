@@ -15,7 +15,7 @@ const Layout = () => {
         className="flex-auto z-10"
         style={{
           background:
-            "linear-gradient(to right, #f9f8ff, #f7f9fc, #fcfbf7, #f8f7f9, #f9f8ff)",
+            "linear-gradient(to right, #f6f6f5, #f8f8f8, #dfdce6, #e1e5ec, #ffffff)",
         }}
       >
         <div className="z-50 ">
