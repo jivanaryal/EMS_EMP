@@ -145,7 +145,7 @@ const TaskDetails = () => {
                 <td className="py-3 px-4 border-l border-r">
                   <div className="relative h-2 w-48 bg-gray-200 rounded-full">
                     <div
-                      className="absolute top-0 left-0 h-full bg-green-500 rounded-full"
+                      className="absolute top-0 left-0 h-full bg-mainColor rounded-full"
                       style={{ width: `${val.task_complete}%` }}
                     ></div>
                   </div>
