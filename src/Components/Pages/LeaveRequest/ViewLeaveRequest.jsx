@@ -26,7 +26,7 @@ const ViewLeaveRequest = () => {
   // }, []);
 
   const deleteItem = (id) => {
-    remove(`/leave/request/${storedUserId}`)
+    remove(`/leave/request/${id}`)
       .then((res) => {
         if (res.status === 200) {
           setToggle(!toggle);
@@ -62,36 +62,29 @@ const ViewLeaveRequest = () => {
               S.No
             </th>
             <th className="py-2 px-6 border-r border-b border-gray-200">
-              Employee Name
-            </th>
-            <th className="py-2 px-6 border-r border-b border-gray-200">
               Start Date
             </th>
             <th className="py-2 px-6 border-r border-b border-gray-200">
               End Date
             </th>
             <th className="py-2 px-6 border-r border-b border-gray-200">
+              Message
+            </th>
+            <th className="py-2 px-6 border-r border-b border-gray-200">
               Status
             </th>
             <th className="py-2 px-6 border-r border-b border-gray-200">
-              Delete
-            </th>
-            <th className="py-2 px-6 border-r border-b border-gray-200">
-              Edit
+              Action
             </th>
           </tr>
         </thead>
         <tbody className="text-gray-600 text-sm font-bold">
           {filterInfo.map((val, i) => (
-            <tr key={i} className="border-b border-gray-200 hover:bg-gray-100">
+            <tr key={i} className="border-b border-gray-200 hover:bg-gray-100 ">
               <td className="py-2 px-4 border-l text-center">{i + 1}</td>
-              <td className="py-2 px-4 border-l text-center">
-                {val.first_name}
-                {val.middle_name}
-                {val.last_name}
-              </td>
               <td className="py-2 px-4 border-l border-r">{val.start_date}</td>
               <td className="py-2 px-4 border-l border-r">{val.end_date}</td>
+              <td className="py-2 px-4 border-l text-center">{val.message}</td>
               <td
                 className={`py-2 px-4 border-l border-r text-base  text-center font-black capitalize ${
                   val.status === "rejected" && "text-red-700"
@@ -99,14 +92,14 @@ const ViewLeaveRequest = () => {
               >
                 {val.status}
               </td>
-              <td className="py-2 px-4 border-l border-r text-center">
+              <td className="py-2 px-4 border-l border-r text-center flex justify-center gap-2">
                 <MdDelete
                   onClick={() => {
                     if (
                       val.status !== "rejected" &&
                       val.status !== "approved"
                     ) {
-                      deleteItem(val.dept_id);
+                      deleteItem(val.leave_id);
                     }
                   }}
                   className={`text-3xl ${
@@ -115,8 +108,7 @@ const ViewLeaveRequest = () => {
                       : "hover:scale-110 hover:text-red-500 transition-all delay-100 duration-300 cursor-pointer"
                   }`}
                 />
-              </td>
-              <td className="py-2 px-4 border-l border-r text-center">
+
                 <Link
                   // ...
                   className={`hover:scale-110 transition-all delay-100 duration-300 ${
@@ -125,8 +117,9 @@ const ViewLeaveRequest = () => {
                       : "hover:text-blue-500"
                   }`}
                   to={{
-                    pathname: `/department/${val.dept_id}`,
+                    pathname: `edit/${val.leave_id}`,
                   }}
+                  state={val}
                 >
                   <MdOutlineUpdate className="text-3xl" />
                 </Link>

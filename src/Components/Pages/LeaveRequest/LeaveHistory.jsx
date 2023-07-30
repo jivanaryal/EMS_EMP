@@ -45,7 +45,7 @@ const LeaveApprovalList = () => {
       <div className="text-3xl ">
         <IoArrowBack onClick={() => handleGoBack()} />
       </div>
-      <h1 className="font-bold text-2xl mb-6">Leave History</h1>
+      <h1 className=" text-2xl mb-6 font-bold">Leave History</h1>
       <table className="w-full bg-white shadow-md rounded-lg overflow-hidden lg:text-md md:text-sm">
         <thead className="bg-gray-200 text-gray-700 text-center text-lg">
           <tr>
@@ -73,7 +73,7 @@ const LeaveApprovalList = () => {
         <tbody className="text-gray-600 text-center">
           {filteredEmployee.map((request) => (
             <tr
-              key={request.emp_id}
+              key={request.leave_id}
               className="border-b border-gray-400  hover:bg-gray-200 font-bold"
               style={{
                 background:
@@ -81,7 +81,7 @@ const LeaveApprovalList = () => {
               }}
             >
               <td className="py-4 px-2 border-l border-r  border-gray-400">
-                {request.emp_id}
+                {request.leave_id}
               </td>
               <td className="py-4 px-2 border-l border-r  border-gray-400">
                 {request.first_name}

@@ -2,7 +2,8 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast, ToastContainer } from "react-toastify";
 
-import { post } from "../../../services/api";
+import { post, update } from "../../../services/api";
+import { useLocation, useParams } from "react-router-dom";
 
 const FormField = [
   {
@@ -21,9 +22,13 @@ const FormField = [
 
 const LeaveRequest = () => {
   const storedUserId = localStorage.getItem("emp_id");
-  console.log(storedUserId);
+  const location = useLocation();
+  const { id } = useParams();
+
+  console.log(location.state);
+
   const postFormData = async (value) => {
-    post(`/leave/request/${storedUserId}`, value)
+    update(`/leave/approve/emp/${id}`, value)
       .then((res) => {
         toast.success("The request has been sent");
       })
@@ -43,12 +48,12 @@ const LeaveRequest = () => {
   };
 
   return (
-    <div className="w-full px-6 sm:px-10">
+    <div className="w-full px-6 sm:px-10 mt-20">
       <Formik
         initialValues={{
-          start_date: "",
-          end_date: "",
-          message: "",
+          start_date: location.state.start_date,
+          end_date: location.state.end_date,
+          message: location.state.message,
         }}
         // validationSchema={schema}
         onSubmit={(values) => {
