@@ -88,7 +88,9 @@ const ChangePassword = () => {
           <Form onSubmit={handleSubmit} className="">
             <div className="shadow-lg shadow-mainColor   bg-slate-100 w-[35rem]  rounded-lg   backdrop-filter  bg-opacity-50 border-2 border-gray-300 pt-10  p-10">
               <div className="grid grid-cols-1 gap-6">
-                <p className="font-bold text-xl">Change Your Password</p>
+                <p className="font-bold text-xl text-red-500">
+                  Change Your Password
+                </p>
                 {FormFields.map((val, i) => {
                   if (val.type === "select") {
                     return (
