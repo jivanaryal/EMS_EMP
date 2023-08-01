@@ -136,7 +136,7 @@ const Index = ({ name, onClick, falseCondition, task }) => {
               </Form>
             )}
           </Formik>
-          <ToastContainer position="bottom-right" />
+          <ToastContainer className="mt-11 text-sm " />
         </div>
       </div>
     </div>
