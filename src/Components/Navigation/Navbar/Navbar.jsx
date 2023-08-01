@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { GoSearch } from "react-icons/go";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { get } from "../../../services/api";
@@ -11,9 +11,31 @@ const Navbar = () => {
   const [Arrow, setArrow] = useState(false);
   const [employee, setEmployee] = useState([]);
   const storedUserId = localStorage.getItem("emp_id");
+  const navbarRef = useRef(null);
   console.log(storedUserId);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Function to handle clicks outside the Navbar component
+    const handleClickOutsideNavbar = (event) => {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        console.log(
+          navbarRef.current,
+          !navbarRef.current.contains(event.target)
+        );
+        setShow(false);
+      }
+    };
+
+    // Add event listener when the component mounts
+    document.addEventListener("click", handleClickOutsideNavbar);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("click", handleClickOutsideNavbar);
+    };
+  }, [setShow]);
 
   useEffect(() => {
     get(`/employee/${storedUserId}`)
@@ -33,6 +55,7 @@ const Navbar = () => {
   // const navigate = useNavigate();
   return (
     <div
+      ref={navbarRef}
       className="h-16 border-2 z-30 border-gray-500 shadow-2xl bg-secondColor text-white fixed top-0 w-full navbar"
       // style={{
       //   background: "linear-gradient(to right, #000460, #004e82)",
