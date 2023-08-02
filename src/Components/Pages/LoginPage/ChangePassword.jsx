@@ -48,16 +48,13 @@ const ChangePassword = () => {
       if (response.status === 200) {
         toast.success("New password change");
       } else {
-        // console.error("Failed to create employee.");
         toast.error("Failed to change password.");
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        // console.error("Employee with the same ID already exists.");
         toast.error("Your Old Password is incorrect.");
       } else {
-        // console.error("Error:", error);
-        toast.error("An error occurred while creating employee.");
+        toast.error("An error occurred while changing password.");
       }
     }
   };

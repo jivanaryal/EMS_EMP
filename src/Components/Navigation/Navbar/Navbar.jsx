@@ -8,7 +8,6 @@ import Profile from "./Profile/Profile";
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
-  const [Arrow, setArrow] = useState(false);
   const [employee, setEmployee] = useState([]);
   const storedUserId = localStorage.getItem("emp_id");
   const navbarRef = useRef(null);
@@ -20,10 +19,6 @@ const Navbar = () => {
     // Function to handle clicks outside the Navbar component
     const handleClickOutsideNavbar = (event) => {
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
-        console.log(
-          navbarRef.current,
-          !navbarRef.current.contains(event.target)
-        );
         setShow(false);
       }
     };
@@ -90,23 +85,12 @@ const Navbar = () => {
                 />
               </div>
               <div className=" ">
-                {Arrow ? (
-                  <MdKeyboardArrowDown
-                    onClick={() => {
-                      setArrow(!Arrow);
-                      setShow(!show);
-                    }}
-                    className="text-4xl  cursor-pointer "
-                  />
-                ) : (
-                  <MdKeyboardArrowUp
-                    onClick={() => {
-                      setArrow(!Arrow);
-                      setShow(!show);
-                    }}
-                    className="text-4xl  cursor-pointer "
-                  />
-                )}
+                <MdKeyboardArrowDown
+                  onClick={() => {
+                    setShow(!show);
+                  }}
+                  className="text-4xl  cursor-pointer "
+                />
 
                 {show && (
                   <div className="w-56 text-black bg-white rounded-md shadow-sm shadow-gray-400 absolute top-[3.4rem]  right-[1px] -z-50  cursor-pointer border-1 border-gray-300 py-2 px-3">

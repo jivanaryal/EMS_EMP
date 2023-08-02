@@ -3,6 +3,20 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast, ToastContainer } from "react-toastify";
 import { update } from "../../services/api";
 import { useParams } from "react-router-dom";
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+  status: yup
+    .string()
+    .required("The Name is required")
+    .max(20, "Character length should not exceed 15"),
+  task_complete: yup
+    .string()
+    .required("The task_complete is required")
+    .min(0, "Task completion should not be less than 0")
+    .max(100, "Task completion should not be greater than 100"),
+  emp_final_remark: yup.string().required("The emp_final_remark is required"),
+});
 
 const Index = ({ name, onClick, falseCondition, task }) => {
   const { id } = useParams();
@@ -56,6 +70,7 @@ const Index = ({ name, onClick, falseCondition, task }) => {
               task_complete: "",
               status: "",
             }}
+            validationSchema={schema}
             onSubmit={(values) => {
               postFormData(values);
             }}
@@ -81,6 +96,11 @@ const Index = ({ name, onClick, falseCondition, task }) => {
                       style={{ paddingTop: "0.5rem" }}
                       placeholder="Remarks..."
                     />
+                    <ErrorMessage
+                      name="emp_final_remark"
+                      component="div"
+                      className="text-red-500 text-sm mt-1"
+                    />
                   </div>
                 </div>
                 {/* ...work completion in percentage */}
@@ -96,6 +116,11 @@ const Index = ({ name, onClick, falseCondition, task }) => {
                       name="task_complete"
                       placeholder="Work completion percentage"
                       className="border border-gray-400 rounded-md px-2 py-2 w-full text-black"
+                    />
+                    <ErrorMessage
+                      name="task_complete"
+                      component="div"
+                      className="text-red-500 text-sm mt-1"
                     />
                   </div>
                 </div>
@@ -116,6 +141,11 @@ const Index = ({ name, onClick, falseCondition, task }) => {
                       <option value="inprogress">In Progress</option>
                       <option value="completed">Completed</option>
                     </Field>
+                    <ErrorMessage
+                      name="status"
+                      component="div"
+                      className="text-red-500 text-sm mt-1"
+                    />
                   </div>
                 </div>
                 <div className="flex justify-center mt-9 gap-6">
