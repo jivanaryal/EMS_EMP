@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Profile from "./Profile/Profile";
 // import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ sidebar }) => {
   const [show, setShow] = useState(false);
   const [employee, setEmployee] = useState([]);
   const storedUserId = localStorage.getItem("emp_id");
@@ -57,8 +57,8 @@ const Navbar = () => {
       // }}
     >
       <div
-        className="w-full h-full flex items-center
-      justify-around pr-7"
+        className={`h-full flex items-center
+      pl-4  pr-7  ${sidebar ? "justify-around" : "justify-around ml-12"}`}
       >
         {/* search  */}
         <div className="searchbox invisible flex items-center relative border-2  rounded-md ">
@@ -74,14 +74,14 @@ const Navbar = () => {
         {employee.map((val, i) => {
           return (
             <div className="flex relative  items-center gap-3">
-              <div className="font-bold text-lg">
+              <div className="font-bold text-lg md:block hidden">
                 {val.first_name} {val.middle_name} {val.last_name}
               </div>
               <div className=" rounded-full ">
                 <img
                   src={`http://localhost:5000/${val.image}`}
                   alt="logo"
-                  className=" w-12 h-12 rounded-full border-2"
+                  className=" w-12 h-12 rounded-full border-2 sm:block hidden "
                 />
               </div>
               <div className=" ">
@@ -89,7 +89,7 @@ const Navbar = () => {
                   onClick={() => {
                     setShow(!show);
                   }}
-                  className="text-4xl  cursor-pointer "
+                  className="text-4xl sm:mr-0 mr-24  cursor-pointer "
                 />
 
                 {show && (

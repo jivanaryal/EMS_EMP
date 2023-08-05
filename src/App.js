@@ -17,6 +17,7 @@ import TaskDetails from "./Components/Pages/Task/NewTask/TaskDetails";
 import InputField from "./dummy/InputField";
 import LeaveApprovalList from "./Components/Pages/LeaveRequest/LeaveHistory";
 import ChangePassword from "./Components/Pages/LoginPage/ChangePassword";
+import NoRouteFound from "./Components/Pages/Notfound/NoRouteFound";
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
             <Route path="/setting" element={<ChangePassword />} />
           </Route>
           <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<NoRouteFound />} />
         </Routes>
       </Router>
     </div>

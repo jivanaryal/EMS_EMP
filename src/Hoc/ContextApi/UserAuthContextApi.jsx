@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+// import { useCookies } from "react-cookie";
 
 export const UserAuthContext = createContext();
 
@@ -7,6 +8,8 @@ const UserAuthContextApi = ({ children }) => {
   const [token, setToken] = useState("");
   const navigate = useNavigate();
   const [userId, setUserId] = useState(null);
+  const location = useLocation();
+  console.log(location.pathname);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");

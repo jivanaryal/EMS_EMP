@@ -9,8 +9,6 @@ import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { IoMdExit } from "react-icons/io";
 import { BiTask } from "react-icons/bi";
 import { get } from "../../../services/api";
-import PieChart from "./PieChart";
-import { controllers } from "chart.js";
 
 const Dashboard = () => {
   const [singleEmployee, setSingleEmployee] = useState([]);
@@ -121,12 +119,12 @@ const Dashboard = () => {
                   <Link to={val.path} key={val.id}>
                     <div
                       style={{ backgroundColor: val.colors1 }}
-                      className="rounded-lg flex h-52 flex-col justify-center items-center text-white text-center p-4 shadow-md transform transition-all hover:scale-105"
+                      className="rounded-lg flex md:h-52 h-32 flex-col justify-center items-center text-white text-center p-4 shadow-md transform transition-all hover:scale-105"
                     >
-                      <div className="text-4xl font-bold rounded-md p-4 mb-4">
+                      <div className="lg:text-4xl md:text-xl text-lg font-bold rounded-md p-4 ">
                         {val.icons}
                       </div>
-                      <div className="text-xl font-bold mb-2 font-link ">
+                      <div className="lg:text-xl md:text-lg text-base font-bold mb-2 font-link ">
                         {val.title}
                       </div>
 
@@ -147,7 +145,7 @@ const Dashboard = () => {
                     <img
                       src={`http://localhost:5000/${val.image}`}
                       alt=""
-                      className="w-40 h-40 rounded-full object-cover border-4 border-blue-500 shadow-lg mx-auto"
+                      className="w-40 h-40 rounded-full md:block hidden object-cover border-4 border-blue-500 shadow-lg mx-auto"
                     />
                   </div>
                   <h1 className="text-4xl font-bold mb-4 text-blue-500 text-center">

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { BiTask } from "react-icons/bi";
+import { BiTask, BiTaskX } from "react-icons/bi";
 import logo from "../../../assests/Images/logo.png";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdTaskAlt } from "react-icons/md";
 import { FcLeave } from "react-icons/fc";
-import { GiArchiveRegister } from "react-icons/gi";
+import { GrInProgress } from "react-icons/gr";
 
-const SideBar = () => {
+const SideBar = ({ sidebar }) => {
   const location = useLocation();
   const [expandedOption, setExpandedOption] = useState("");
 
@@ -36,17 +36,17 @@ const SideBar = () => {
       path: null,
       options: [
         {
-          icon: null,
+          icon: <BiTaskX />,
           title: "New Task",
           path: "/task/new",
         },
         {
-          icon: null,
+          icon: <GrInProgress />,
           title: "In Progress Task",
           path: "/task/inprogress",
         },
         {
-          icon: null,
+          icon: <MdTaskAlt />,
           title: "Completed Task",
           path: "/task/completed",
         },
@@ -55,24 +55,34 @@ const SideBar = () => {
   ];
   return (
     <div className="pl-5  h-screen bg-mainColor text-white">
-      <div className=" text-[#FDF7FF] flex justify-center font-extrabold py-8">
-        <img src={logo} alt="logo" className="h-24 w-24 bg-transparent" />
+      <div
+        className={` text-[#FDF7FF] flex justify-center   font-extrabold py-1 ${
+          sidebar === false && "hidden"
+        }`}
+      >
+        <img src={logo} alt="logo" className="h-20 w-24" />
       </div>
-      <div className="text-purple-100 pb-4">MAIN MENU</div>
+      <div
+        className={`text-[#e2cefd] pb-4 ${sidebar === false && "invisible"}`}
+      >
+        MAIN MENU
+      </div>
       <div className="flex flex-col h-full gap-4">
         {NavData.map((val, i) => (
           <div key={i} className=" shadow-sm shadow-gray-600 mr-4">
             <Link to={val.path}>
               {" "}
               <div
-                className={`flex  border-2 pl-4 py-3 rounded-lg items-center  text-base    ${
+                className={`flex  border-2 pl-4 py-3 rounded-lg items-center capitalize gap-2  text-base    ${
                   location.pathname === val.path &&
                   " bg-[#F6F6F6] text-black  shadow-md font-bold capitalize"
                 }`}
                 onClick={() => toggleDropdown(val.title)}
               >
                 <div className="text-xl ">{val.icon}</div>
-                <div className="ml-2 capitalize">{val.title}</div>
+                <div className={`text-sm  ${sidebar ? "block" : "hidden"}`}>
+                  {val.title}
+                </div>
               </div>
             </Link>
             {val.options && expandedOption === val.title && (
@@ -86,7 +96,11 @@ const SideBar = () => {
                       }`}
                     >
                       <div className="mr-2">{option.icon}</div>
-                      <div>{option.title}</div>
+                      <div
+                        className={`text-sm ${sidebar ? "block" : "hidden"}`}
+                      >
+                        {option.title}
+                      </div>
                     </div>
                   </Link>
                 ))}

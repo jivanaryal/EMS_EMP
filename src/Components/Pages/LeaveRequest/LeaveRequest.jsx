@@ -3,6 +3,13 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast, ToastContainer } from "react-toastify";
 
 import { post } from "../../../services/api";
+import * as yup from "yup";
+
+const validationSchema = yup.object().shape({
+  start_date: yup.date().required("Start date is required"),
+  end_date: yup.date().required("End date is required"),
+  message: yup.string().required("Message is required"),
+});
 
 const FormField = [
   {
@@ -43,14 +50,14 @@ const LeaveRequest = () => {
   };
 
   return (
-    <div className="w-full px-6 sm:px-10">
+    <div className="w-full ">
       <Formik
         initialValues={{
           start_date: "",
           end_date: "",
           message: "",
         }}
-        // validationSchema={schema}
+        validationSchema={validationSchema}
         onSubmit={(values) => {
           postFormData(values);
           // toast.success("Form submitted successfully!");
@@ -61,7 +68,7 @@ const LeaveRequest = () => {
             onSubmit={handleSubmit}
             className="mt-8 shadow-sm shadow-gray-400 p-8"
           >
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {FormField.map((field, index) => (
                 <div key={index} className="text-gray-600">
                   <label htmlFor={field.name} className="text-lg font-semibold">
