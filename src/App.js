@@ -18,6 +18,8 @@ import InputField from "./dummy/InputField";
 import LeaveApprovalList from "./Components/Pages/LeaveRequest/LeaveHistory";
 import ChangePassword from "./Components/Pages/LoginPage/ChangePassword";
 import NoRouteFound from "./Components/Pages/Notfound/NoRouteFound";
+import MyProfile from "./Components/Navigation/Navbar/Profile/MyProfile";
+import TaskReport from "./Components/Pages/Task/NewTask/TaskReport";
 
 const App = () => {
   return (
@@ -29,16 +31,18 @@ const App = () => {
             <Route path="leave" element={<Leave />} />
             <Route path="leave/edit/:id" element={<EditLeaveRequest />} />
             <Route path="leave/history" element={<LeaveApprovalList />} />
-            <Route path="myprofile" element={<Profile />} />
+            {/* <Route path="myprofile" element={<Profile />} /> */}
             <Route path="task" element={<Task />} />
             <Route path="task/new" element={<NewTask />} />
             <Route path="/view/:id" element={<TaskDetails />} />
             {/* <Route path="/UpdateTask" element={<UpdateTask />} /> */}
             <Route path="task/inprogress" element={<InProgressTask />} />
             <Route path="task/completed" element={<CompletedTask />} />
+            <Route path="task/history/:id" element={<TaskReport />} />
             {/* <Route path="jivan" element={<Check1 />} /> */}
             {/* <Route path="manoj" element={<InputField />} /> */}
             <Route path="/setting" element={<ChangePassword />} />
+            <Route path="/myprofile" element={<MyProfile />} />
           </Route>
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<NoRouteFound />} />

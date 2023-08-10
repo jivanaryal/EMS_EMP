@@ -53,21 +53,21 @@ const Layout = () => {
             </div>
           </div>
           <div
-            className="flex-auto z-10"
-            style={{
-              background:
-                "linear-gradient(to right, #f6f6f5, #f8f8f8, #dfdce6, #e1e5ec,#eff9ff)",
-            }}
+            className="flex-auto z-10 bg-slate-100"
+            // style={{
+            //   background:
+            //     "linear-gradient(to right, #f6f6f5, #f8f8f8, #dfdce6, #e1e5ec,#eff9ff)",
+            // }}
           >
             <div className="z-50 ">
               <Navbar sidebar={sidebar} />
             </div>
             <div
               className="relative  mt-[4.1rem]  -z-10"
-              style={{
-                background:
-                  "linear-gradient(to right, #f9f8ff, #f7f9fc, #fcfbf7, #f8f7f9, #f9f8ff)",
-              }}
+              // style={{
+              //   background:
+              //     "linear-gradient(to right, #f9f8ff, #f7f9fc, #fcfbf7, #f8f7f9, #f9f8ff)",
+              // }}
             >
               <Outlet />
             </div>

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { MdDelete, MdOutlineUpdate } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -8,22 +8,20 @@ import "react-toastify/dist/ReactToastify.css";
 const ViewLeaveRequest = () => {
   const storedUserId = localStorage.getItem("emp_id");
   const [info, setInfo] = useState([]);
-  // const navigate = useNavigate();
   const [toggle, setToggle] = useState([]);
 
   const fetchData = async () => {
     try {
       const res = await get(`/leave/approve/${storedUserId}`);
-      console.log(res.data);
       setInfo(res.data);
     } catch (error) {
-      console.error(error); // Display the error in the console
+      console.error(error);
     }
   };
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, [toggle]);
 
   const deleteItem = (id) => {
     remove(`/leave/request/${id}`)
@@ -40,46 +38,41 @@ const ViewLeaveRequest = () => {
       });
   };
 
-  const newCallBack = useCallback(() => {
-    fetchData();
-  }, []);
-
   const filterInfo = info.filter((val) => val.status === "pending");
 
-  const newData = useMemo(() => newCallBack(), [toggle]);
   return (
-    <div className=" shadow-sm shadow-gray-400 p-4">
-      <Link to="/leave/history">
-        <div className="border-2 absolute md:right-4 left-0 top-[-1px] capitalize py-2  shadow-md px-4 text-xl font-bold   cursor-pointer rounded-md w-fit   mt-4 hover:bg-mainColor">
+    <div className="p-4 shadow-sm shadow-gray-400 ">
+      <Link to="/leave/history" className="mb-6">
+        <div className="border-2 absolute right-4   capitalize md:py-2 py-1  shadow-md md:px-4 px-1 md:text-xl text-sm font-bold  shadow-mainColor cursor-pointer rounded-md w-fit    hover:bg-mainColor hover:text-white">
           Leave History
         </div>
       </Link>
       <h1 className="font-bold text-xl">View Leave</h1>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto mt-10">
         <table className="w-full rounded-lg shadow-sm">
-          <thead className="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+          <thead className="bg-mainColor text-white uppercase md:text-sm text-[10px]  leading-normal">
             <tr>
-              <th className="py-2 text-start px-6 border-r border-b border-gray-200">
+              <th className=" text-start px-6 border-r border-b border-gray-200 ">
                 S.No
               </th>
-              <th className="py-2 px-6 border-r border-b border-gray-200">
+              <th className="py-2  border-r border-b border-gray-200">
                 Start Date
               </th>
-              <th className="py-2 px-6 border-r border-b border-gray-200">
+              <th className="py-2  border-r border-b border-gray-200">
                 End Date
               </th>
-              <th className="py-2 px-6 border-r border-b border-gray-200">
+              <th className="py-2 px-6 border-r border-b border-gray-200 hidden md:table-cell">
                 Message
               </th>
-              <th className="py-2 px-6 border-r border-b border-gray-200">
+              <th className="py-2 px-6 border-r border-b border-gray-200 hidden md:table-cell">
                 Status
               </th>
-              <th className="py-2 px-6 border-r border-b border-gray-200">
+              <th className="py-2  border-r border-b border-gray-200">
                 Action
               </th>
             </tr>
           </thead>
-          <tbody className="text-gray-600 text-sm font-bold">
+          <tbody className="text-gray-600 md:text-sm text-[10px] font-bold">
             {filterInfo.map((val, i) => (
               <tr
                 key={i}
@@ -90,14 +83,10 @@ const ViewLeaveRequest = () => {
                   {val.start_date}
                 </td>
                 <td className="py-2 px-4 border-l border-r">{val.end_date}</td>
-                <td className="py-2 px-4 border-l text-center">
+                <td className="py-2 px-4 border-l text-center hidden md:table-cell">
                   {val.message}
                 </td>
-                <td
-                  className={`py-2 px-4 border-l border-r text-base  text-center font-black capitalize ${
-                    val.status === "rejected" && "text-red-700"
-                  } ${val.status === "approved" && "text-green-700"}`}
-                >
+                <td className="py-2 px-4 border-l border-r text-base text-center font-black capitalize hidden md:table-cell">
                   {val.status}
                 </td>
                 <td className="py-2 px-4 border-l border-r text-center flex justify-center gap-2">
@@ -110,15 +99,13 @@ const ViewLeaveRequest = () => {
                         deleteItem(val.leave_id);
                       }
                     }}
-                    className={`text-3xl ${
+                    className={`md:text-3xl text-xl ${
                       val.status === "rejected" || val.status === "approved"
                         ? "text-gray-400 cursor-not-allowed"
                         : "hover:scale-110 hover:text-red-500 transition-all delay-100 duration-300 cursor-pointer"
                     }`}
                   />
-
                   <Link
-                    // ...
                     className={`hover:scale-110 transition-all delay-100 duration-300 ${
                       val.status === "rejected" || val.status === "approved"
                         ? "text-gray-400 cursor-not-allowed"
@@ -129,7 +116,7 @@ const ViewLeaveRequest = () => {
                     }}
                     state={val}
                   >
-                    <MdOutlineUpdate className="text-3xl" />
+                    <MdOutlineUpdate className="md:text-3xl text-xl" />
                   </Link>
                 </td>
               </tr>
@@ -137,7 +124,7 @@ const ViewLeaveRequest = () => {
           </tbody>
         </table>
       </div>
-      <ToastContainer className="mt-11 text-sm " />
+      <ToastContainer className="mt-8 text-sm" />
     </div>
   );
 };

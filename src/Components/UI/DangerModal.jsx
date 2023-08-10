@@ -51,7 +51,7 @@ const Index = ({ name, onClick, falseCondition, task }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="fixed inset-0 flex items-center justify-center z-50 ">
       <div
         className="fixed inset-0 bg-gray-900 opacity-50"
         onClick={fail}
@@ -62,7 +62,7 @@ const Index = ({ name, onClick, falseCondition, task }) => {
           className="absolute top-3 right-2.5 text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
           onClick={fail}
         ></button>
-        <div className="w-full px-4">
+        <div className="w-[60rem] px-10 my-20 ">
           <h1 className="font-bold text-xl mt-4 pl-4">Take Action</h1>
           <Formik
             initialValues={{
@@ -92,7 +92,7 @@ const Index = ({ name, onClick, falseCondition, task }) => {
                     <Field
                       as="textarea"
                       name="emp_final_remark"
-                      className="w-full h-44 px-2 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring focus:border-blue-300 text-black"
+                      className="w-full h-32 px-2 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring focus:border-blue-300 text-black"
                       style={{ paddingTop: "0.5rem" }}
                       placeholder="Remarks..."
                     />
@@ -103,7 +103,49 @@ const Index = ({ name, onClick, falseCondition, task }) => {
                     />
                   </div>
                 </div>
+                <div className="grid grid-cols-2 border-b-2 border-gray-300 hover:bg-mainColor hover:text-white">
+                  <label
+                    htmlFor="remarks"
+                    className="text-lg font-semibold border-r-2 border-gray-300 pl-2 hover:text-white"
+                  >
+                    Issues and RoadBacks
+                  </label>
+                  <div className="textarea m-2">
+                    <Field
+                      as="textarea"
+                      name="emp_final_remark"
+                      className="w-full h-20 px-2 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring focus:border-blue-300 text-black"
+                      style={{ paddingTop: "0.5rem" }}
+                      placeholder="issues..."
+                    />
+                    <ErrorMessage
+                      name="emp_final_remark"
+                      component="div"
+                      className="text-red-500 text-sm mt-1"
+                    />
+                  </div>
+                </div>
                 {/* ...work completion in percentage */}
+                <div className="grid grid-cols-2 items-center border-b-2 border-gray-300 hover:bg-mainColor hover:text-white">
+                  <div className="py-4 border-gray-300 border-r-2">
+                    <label htmlFor="work" className="border-gray-300 pl-2">
+                      Resources Used
+                    </label>
+                  </div>
+                  <div className="m-2">
+                    <Field
+                      type="text"
+                      name="task_complete"
+                      placeholder="Work completion percentage"
+                      className="border border-gray-400 rounded-md px-2 py-2 w-full text-black"
+                    />
+                    <ErrorMessage
+                      name="task_complete"
+                      component="div"
+                      className="text-red-500 text-sm mt-1"
+                    />
+                  </div>
+                </div>
                 <div className="grid grid-cols-2 items-center border-b-2 border-gray-300 hover:bg-mainColor hover:text-white">
                   <div className="py-4 border-gray-300 border-r-2">
                     <label htmlFor="work" className="border-gray-300 pl-2">

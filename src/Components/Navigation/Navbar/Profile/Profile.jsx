@@ -2,6 +2,10 @@ import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 const data = [
   {
+    name: "Profile",
+    path: "/myprofile",
+  },
+  {
     name: "Setting",
     path: "/setting",
   },

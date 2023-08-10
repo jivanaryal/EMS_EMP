@@ -22,7 +22,7 @@ const UserAuthContextApi = ({ children }) => {
       setUserId(storedUserId);
     }
     if (storedToken) {
-      navigate("/");
+      // navigate("/");
     } else {
       navigate("/login");
     }

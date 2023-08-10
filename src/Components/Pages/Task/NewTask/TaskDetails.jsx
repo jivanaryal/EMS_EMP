@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import DangerModal from "../../../UI/DangerModal";
 import { get } from "../../../../services/api";
 
@@ -90,7 +90,14 @@ const TaskDetails = () => {
                 <p className="font-semibold border-gray-300 border-r-2 py-3">
                   Task Assign Date
                 </p>
-                <p className="px-2 py-3">{val.task_assign_date}</p>
+                <p className="px-2 py-3">
+                  {val.task_assign_date &&
+                    new Date(val.task_assign_date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                </p>
               </div>
               <div className="finish px-2 grid grid-cols-4 border-b-2 border-gray-300  hover:bg-gray-100">
                 <p className="font-semibold border-gray-300 border-r-2 py-3">
@@ -99,18 +106,12 @@ const TaskDetails = () => {
                 <p className="px-2 py-3">{val.task_end_date}</p>
               </div>
               {/* remarks */}
-              <div className="assign px-2 grid grid-cols-4  hover:bg-gray-100">
-                <p className="font-semibold border-gray-300 border-r-2 py-3">
-                  Employee Final Remarks
-                </p>
-                <p className="capitalize py-3">{val.emp_final_remark}</p>
-              </div>
             </div>
           );
         })}
       </div>
       {/* Task history */}
-      <div className=" border-gray-300 border-2 mt-4">
+      <div className=" border-gray-300 border-2 mt-4 ">
         <p className="p-2 text-center font-bold text-lg"> Task History</p>
         <table className="w-full border-2 border-gray-200">
           <thead className=" bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
@@ -151,23 +152,30 @@ const TaskDetails = () => {
                   </div>
                 </td>
 
-                <td className="py-3 px-4 border-l border-r">{val.time}</td>
+                <td className="px-2 py-3">
+                  {val.time &&
+                    new Date(val.time).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
       <div className="btn text-center mt-4 ">
-        <button
-          className={`bg-mainColor text-white rounded-sm p-2 ${
-            status === "completed" && "hidden"
-          } `}
-          onClick={() => {
-            setShowDelete(true);
-          }}
-        >
-          Take Action
-        </button>
+        <Link to={`/task/history/${id}`} state={task}>
+          {" "}
+          <button
+            className={`bg-mainColor text-white rounded-sm p-2 ${
+              status === "completed" && "hidden"
+            } `}
+          >
+            Take Action
+          </button>
+        </Link>
       </div>
     </div>
   );

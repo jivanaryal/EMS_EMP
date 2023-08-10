@@ -31,7 +31,7 @@ const NewTask = () => {
     <div className="my-10 mx-10 shadow-sm  shadow-gray-400 p-4">
       <h1 className="font-bold text-xl mb-4">View New Task</h1>
       <table className="w-full">
-        <thead className=" text-gray-600 uppercase text-md leading-normal bg-gray-300 ">
+        <thead className=" uppercase text-md leading-normal bg-mainColor text-white ">
           <tr className="">
             <th className="py-3 text-start  px-6 border-r border-b border-gray-200">
               S.No
