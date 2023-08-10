@@ -13,20 +13,16 @@ const UserAuthContextApi = ({ children }) => {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
-    const storedUserId = localStorage.getItem("emp_id");
 
     if (storedToken) {
       setToken(storedToken);
-    }
-    if (storedUserId) {
-      setUserId(storedUserId);
-    }
-    if (storedToken) {
-      // navigate("/");
+      if (location === "/login") {
+        navigate("/");
+      }
     } else {
       navigate("/login");
     }
-  }, []); // empty dependency array to run effect only once on mount
+  }, [location, navigate]);
 
   return (
     <UserAuthContext.Provider
