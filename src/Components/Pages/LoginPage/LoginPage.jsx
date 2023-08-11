@@ -9,14 +9,14 @@ import { useNavigate } from "react-router-dom";
 import { post } from "../../../services/api";
 import bg from "../../../assests/Images/bg.png";
 const schema = yup.object().shape({
-  email: yup.string().required("Email is required").email("Invalid email"),
+  userName: yup.string().required("userName is required"),
   password: yup.string().required("Password is required"),
 });
 
 const FormField = [
   {
-    name: "email",
-    type: "email",
+    name: "userName",
+    type: "text",
   },
   {
     name: "password",
@@ -34,9 +34,14 @@ const LoginPage = () => {
       if (res.status === 200) {
         localStorage.setItem("token", res.data.token);
         const emp_id = res.data.emp_id;
+
         console.log(res.data);
         localStorage.setItem("emp_id", emp_id);
-        navigate("/", { state: { emp_id } });
+
+        toast.success("Login Sucessfully");
+        setTimeout(() => {
+          navigate("/", { state: { emp_id } });
+        }, 1000);
       }
     } catch (error) {
       console.log(error);
@@ -69,7 +74,7 @@ const LoginPage = () => {
                 <div>
                   <Formik
                     initialValues={{
-                      email: "",
+                      userName: "",
                       password: "",
                     }}
                     validationSchema={schema}

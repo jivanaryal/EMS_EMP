@@ -60,11 +60,9 @@ const SideBar = ({ sidebar }) => {
           sidebar === false && "hidden"
         }`}
       >
-        <img src={logo} alt="logo" className="h-20 w-24" />
+        <img src={logo} alt="logo" className="h-16 w-20 " />
       </div>
-      <div
-        className={`text-[#e2cefd] pb-4 ${sidebar === false && "invisible"}`}
-      >
+      <div className={`text-[#e2cefd] p-5 ${sidebar === false && "invisible"}`}>
         MAIN MENU
       </div>
       <div className="flex flex-col h-full gap-4">

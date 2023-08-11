@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import UserAuthContextApi, {
   UserAuthContext,
 } from "../../../Hoc/ContextApi/UserAuthContextApi";
@@ -9,11 +9,13 @@ import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { IoMdExit } from "react-icons/io";
 import { BiTask } from "react-icons/bi";
 import { get } from "../../../services/api";
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
   const [singleEmployee, setSingleEmployee] = useState([]);
   const [employee, setEmployee] = useState([]);
   const [task, setTask] = useState([]);
+  const location = useLocation();
   // const [newTask, setNewTask] = useState([]);
   const storedUserId = localStorage.getItem("emp_id");
 
@@ -64,6 +66,7 @@ const Dashboard = () => {
     window.localStorage.clear();
     navigate("/login");
   };
+
   const data = [
     {
       title: "Take Leave Request",
@@ -74,7 +77,7 @@ const Dashboard = () => {
       icons: <HiBuildingOffice2 />,
     },
     {
-      title: `View ${pending} New Task`,
+      title: ` ${pending} New Task`,
       // num: "24",
       intro: "View Employee",
       colors: "#E8F0FB",
@@ -83,7 +86,7 @@ const Dashboard = () => {
       icons: <HiUserGroup />,
     },
     {
-      title: `View ${inprogress} Inprogress Task`,
+      title: ` ${inprogress} Inprogress Task`,
       // num: "24",
       intro: "Assign Task",
       colors: "#FDEBF9",
@@ -92,7 +95,7 @@ const Dashboard = () => {
       icons: <IoMdExit />,
     },
     {
-      title: ` View ${completed} Completed Task`,
+      title: `  ${completed} Completed Task`,
       // num: "24",
       intro: "View Leave Request",
       colors: "#F1F9FB",

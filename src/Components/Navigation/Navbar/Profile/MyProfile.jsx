@@ -19,7 +19,7 @@ const ViewSingleEmployee = () => {
   const employee = singleEmployee[0] || {}; // Ensure a default empty object
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-[#c1d6eb] to-[#ebeaf0]">
+    <div className="flex justify-center items-center  bg-gradient-to-r backdrop-blur-3xl">
       <div className="bg-white w-96 capitalize rounded-lg p-8 shadow-md border border-gray-300">
         <div className="text-center mb-4">
           <img
