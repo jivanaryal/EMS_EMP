@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast, ToastContainer } from "react-toastify";
 import { update } from "../../../../services/api";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
 
 const schema = yup.object().shape({
@@ -11,17 +11,30 @@ const schema = yup.object().shape({
     .required("The Name is required")
     .max(20, "Character length should not exceed 15"),
   task_complete: yup
-    .string()
+    .number() // Change to .number()
     .required("The task_complete is required")
     .min(0, "Task completion should not be less than 0")
     .max(100, "Task completion should not be greater than 100"),
   emp_final_remark: yup.string().required("The emp_final_remark is required"),
-  //   issues: yup.string().required("The emp_final_remark is required"),
 });
 
 const TaskReport = () => {
   const { id } = useParams();
-  console.log(id);
+  const navigate = useNavigate();
+
+  const updateStatusBasedOnTaskComplete = (value) => {
+    let newStatus = "inprogress"; // Default status
+    console.log(newStatus);
+    const number = parseInt(value);
+
+    if (number === 100) {
+      return (newStatus = "completed");
+    } else if (number < 0 || number > 100) {
+      return (newStatus = "invalid_percentage");
+    }
+    console.log(newStatus);
+    return newStatus;
+  };
 
   const postFormData = async (val) => {
     const data = {
@@ -32,25 +45,31 @@ const TaskReport = () => {
       resources: val.resources,
     };
 
-    update(`/task/emp/${id}`, data)
-      .then((res) => {
-        if (res.status === 200) {
-          toast.success("The task remarks is posted");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (val.status === "invalid_percentage") {
+      // Don't submit if status is "invalid_percentage"
+      toast.error("Invalid percentage. Form data not submitted.");
+    } else {
+      update(`/task/emp/${id}`, data)
+        .then((res) => {
+          if (res.status === 200) {
+            toast.success("The task remarks is posted");
+            setTimeout(() => {
+              navigate(-1);
+            }, 1000);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
     <div>
       <div className="w-full">
-        {/* Task Report Header */}
         <h1 className="font-bold text-center text-3xl mt-4 pl-4">
           Task Report
         </h1>
-        {/* Formik Form */}
         <Formik
           initialValues={{
             emp_final_remark: "",
@@ -61,15 +80,17 @@ const TaskReport = () => {
           }}
           validationSchema={schema}
           onSubmit={(values) => {
+            values.status = updateStatusBasedOnTaskComplete(
+              values.task_complete
+            );
             postFormData(values);
           }}
         >
-          {({ handleSubmit }) => (
+          {({ handleSubmit, values, setFieldValue }) => (
             <Form
               onSubmit={handleSubmit}
               className="m-6 border-2 border-gray-300 shadow-sm shadow-gray-300"
             >
-              {/* Remarks */}
               <div className="grid grid-cols-4 border-b-2 border-gray-300 hover:bg-mainColor hover:text-white">
                 <label
                   htmlFor="remarks"
@@ -145,10 +166,16 @@ const TaskReport = () => {
                 </div>
                 <div className="col-span-3 m-2">
                   <Field
-                    type="text"
+                    type="number" // Change to type="number"
                     name="task_complete"
                     placeholder="Work completion percentage"
                     className="border border-gray-400 rounded-md px-2 py-2 w-full text-black"
+                    onBlur={(e) => {
+                      const newStatus = updateStatusBasedOnTaskComplete(
+                        e.target.value
+                      );
+                      setFieldValue("status", newStatus, true);
+                    }}
                   />
                   <ErrorMessage
                     name="task_complete"
@@ -169,10 +196,14 @@ const TaskReport = () => {
                     as="select"
                     name="status"
                     className="border border-gray-400 p-2 w-full rounded-lg text-black"
+                    disabled
+                    // disabled={values.status === "invalid_percentage"} // Disable if status is "invalid_percentage"
                   >
-                    <option value="">Select Status</option>
                     <option value="inprogress">In Progress</option>
                     <option value="completed">Completed</option>
+                    <option value="invalid_percentage">
+                      Invalid Percentage
+                    </option>
                   </Field>
                   <ErrorMessage
                     name="status"
@@ -194,7 +225,6 @@ const TaskReport = () => {
             </Form>
           )}
         </Formik>
-        {/* Toast Container */}
         <ToastContainer className="mt-11 text-sm" />
       </div>
     </div>

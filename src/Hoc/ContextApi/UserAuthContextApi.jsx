@@ -8,8 +8,7 @@ const UserAuthContextApi = ({ children }) => {
   const [token, setToken] = useState("");
   const navigate = useNavigate();
   const [userId, setUserId] = useState(null);
-  const location = useLocation();
-  console.log(location.pathname);
+  const location = useLocation().pathname;
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");

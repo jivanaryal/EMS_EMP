@@ -58,7 +58,7 @@ const Navbar = ({ sidebar }) => {
     >
       <div
         className={`h-full flex items-center
-      pl-4  pr-7  ${sidebar ? "justify-around" : "justify-around ml-12"}`}
+      pl-4  pr-7  ${sidebar ? "justify-around" : "justify-between mr-16"}`}
       >
         {/* search  */}
         <div className="searchbox invisible flex items-center relative border-2  rounded-md ">

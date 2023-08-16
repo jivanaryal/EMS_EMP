@@ -65,13 +65,13 @@ const SideBar = ({ sidebar }) => {
       <div className={`text-[#e2cefd] p-5 ${sidebar === false && "invisible"}`}>
         MAIN MENU
       </div>
-      <div className="flex flex-col h-full gap-4">
+      <div className="flex flex-col h-full gap-5">
         {NavData.map((val, i) => (
-          <div key={i} className=" shadow-sm shadow-gray-600 mr-4">
+          <div key={i} className=" shadow-sm  mr-4">
             <Link to={val.path}>
               {" "}
               <div
-                className={`flex  border-2 pl-4 py-3 rounded-lg items-center capitalize gap-2  text-base    ${
+                className={`flex md:px-3 pl-1 pr-0 md:py-3 py-1  shadow-base rounded-md   items-center mr-4 text-base  border-[1px] text-center  gap-2 capitalize    ${
                   location.pathname === val.path &&
                   " bg-[#F6F6F6] text-black  shadow-md font-bold capitalize"
                 }`}
